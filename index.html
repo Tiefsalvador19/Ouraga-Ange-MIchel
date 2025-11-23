@@ -3,38 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ouraga Ange-Michel — EDHEG Campaign</title>
+  <title>Ouraga Ange-Michel — Campagne EDHEG : Leader, Action, Innovation</title>
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- AOS (Animate On Scroll) -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  <!-- Font Awesome -->
+  <!-- Font Awesome Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
   <style>
+    /* CSS pour un look chic et percutant */
     :root{
-      --primary:#0d6efd; /* change to EDHEG brand color if provided */
-      --accent:#ff7a00;
+      --primary:#0d6efd; /* Bleu dominant */
+      --accent:#ff7a00; /* Orange percutant */
       --muted:#6c757d;
-      --bg-card:#ffffff;
       --glass: rgba(255,255,255,0.75);
     }
     body{background: linear-gradient(180deg,#f6f9ff 0%, #ffffff 100%); color:#222}
     .hero{background: linear-gradient(90deg, rgba(13,110,253,0.06), rgba(255,122,0,0.03)); padding:6rem 0}
     .card-ghost{background:var(--glass); backdrop-filter: blur(6px); border-radius:1rem}
-    .pill{display:inline-flex; align-items:center; gap:.5rem; background:#fff; padding:.35rem .7rem; border-radius:999px; box-shadow:0 4px 18px rgba(13,110,253,0.06)}
-    .progress-wrap{height:18px; border-radius:999px; background:#e9ecef}
     .nav-brand{font-weight:700; letter-spacing:.2px}
     .cta-btn{background:var(--primary); color:#fff}
-
-    /* Responsive hero image */
+    .btn-animate:hover{transform:translateY(-4px); transition:all .25s ease}
     .hero-img{max-width:480px; width:100%; border-radius:1rem; box-shadow:0 10px 40px rgba(13,110,253,0.08)}
 
-    footer{padding:2.5rem 0}
-    .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
-
-    /* simple bounce on hover for buttons */
-    .btn-animate:hover{transform:translateY(-4px); transition:all .25s ease}
+    /* Styles de la section Statistique */
+    .stat-box{padding:20px; text-align:center; background:#fff; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.05); min-height: 400px;}
+    .stat-number{font-size:3rem; font-weight:700; color:var(--accent)}
+    .stat-error{background-color:#f8d7da; color:#721c24; border:1px solid #f5c6cb; padding:15px; border-radius:5px; margin-bottom:20px; font-weight: bold;}
+    .table-responsive{max-height: 220px; overflow-y: auto; text-align: left;} 
   </style>
 </head>
 <body>
@@ -42,281 +39,186 @@
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
   <div class="container">
-    <a class="navbar-brand nav-brand" href="https://forms.gle/P8CBRFN1inEJWKmj6" target="_blank">Ouraga Ange-Michel</a>
+    <a class="navbar-brand nav-brand" href="#">ANGE-MICHEL | EDHEG</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="#about">À propos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#program">Programme</a></li>
-        <li class="nav-item"><a class="nav-link" href="#roadmap">Roadmap</a></li>
-        <li class="nav-item"><a class="nav-link" href="#join">Rejoindre</a></li>
-        <li class="nav-item ms-3"><a class="btn btn-primary btn-animate" href="#vote">Voter</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">Mon Parcours</a></li>
+        <li class="nav-item"><a class="nav-link" href="#program">Programme SMART</a></li>
+        <li class="nav-item"><a class="nav-link" href="#stats">Statistiques Live</a></li>
+        <li class="nav-item"><a class="nav-link" href="#join">Soutenir / Rejoindre</a></li>
+        <li class="nav-item ms-3"><a class="btn btn-primary btn-animate" href="#join">Voter / Soutenir</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO SECTION (À Remplir avec votre contenu persuasif) -->
 <section class="hero">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-6" data-aos="fade-right">
-        <h1 class="display-5 fw-bold">Le leadership qui sert, inspire et unit.</h1>
-        <p class="lead text-muted">Ouraga Ange-Michel — Étudiant IDEA, développeur & chef de projet. Ensemble, rendons l'EDHEG plus vivante, plus solidaire et plus innovante.</p>
+        <h1 class="display-5 fw-bold">Un Leader, Une Vision : L'Action et l'Innovation.</h1>
+        <p class="lead text-muted">Étudiant IDEA, lauréat ECOCIR, chef de projet. **Mon engagement :** transformer nos frustrations en opportunités. Ensemble, faisons vivre notre école !</p>
         <div class="d-flex gap-3 mt-4">
-          <a class="btn cta-btn btn-lg btn-animate" href="#program">Découvrir le programme</a>
+          <a class="btn cta-btn btn-lg btn-animate" href="#program">Découvrir le programme SMART</a>
           <a class="btn btn-outline-secondary btn-lg" href="#join">Rejoindre l'équipe</a>
         </div>
 
+        <!-- Compteurs Dynamiques -->
         <div class="mt-4">
           <div class="row g-2">
             <div class="col-6">
-              <div class="card p-3 card-ghost" data-aos="flip-left">
+              <div class="card p-3 card-ghost">
                 <div class="d-flex align-items-center">
-                  <i class="fa-solid fa-people-line fa-2x me-3" style="color:var(--primary)"></i>
+                  <i class="fa-solid fa-vote-yea fa-2x me-3" style="color:var(--primary)"></i>
                   <div>
-                    <small class="text-muted">Cohésion</small>
-                    <div class="fw-bold">+50% events</div>
+                    <small class="text-muted">Total Soutiens (Live)</small>
+                    <div class="fw-bold fs-5" id="live-votes">0</div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-6">
-              <div class="card p-3 card-ghost" data-aos="flip-left" data-aos-delay="120">
+              <div class="card p-3 card-ghost">
                 <div class="d-flex align-items-center">
-                  <i class="fa-solid fa-bullseye fa-2x me-3" style="color:var(--accent)"></i>
+                  <i class="fa-solid fa-users-gear fa-2x me-3" style="color:var(--accent)"></i>
                   <div>
-                    <small class="text-muted">Objectifs SMART</small>
-                    <div class="fw-bold">Centre Info EDHEG en 30j</div>
+                    <small class="text-muted">Équipe Recrutée (Live)</small>
+                    <div class="fw-bold fs-5" id="live-members">0</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
       <div class="col-lg-6 text-center" data-aos="fade-left">
-        <!-- placeholder image -> replace with your portrait -->
-        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop&s=placeholder" alt="Ouraga" class="hero-img mt-4 mt-lg-0">
+        <!-- IMAGE DE PROFIL -->
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop&s=placeholder" alt="Ouraga Ange-Michel" class="hero-img mt-4 mt-lg-0">
       </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="py-5">
-  <div class="container">
-    <div class="row g-4 align-items-center">
-      <div class="col-lg-6" data-aos="fade-up">
-        <h2>Qui suis‑je ?</h2>
-        <p class="text-muted">Étudiant 2ᵉ année IDEA | Développeur d'applications | Chef de projet DLD | Lauréat ECOCIR | Représentant PNUD</p>
-        <p>Mon action repose sur l'expérience : diriger, rassembler, exécuter. Je veux transformer notre vie étudiante avec des actions claires, mesurables et inclusives.</p>
+<!-- PROGRAM SECTION (À Compléter) -->
+<section id="program" class="py-5">
+    <div class="container">
+        <!-- Insérez ici les 4 piliers SMART -->
+        <h2 class="text-center mb-5">🎯 Notre Programme en 4 Axes SMART</h2>
+        <p class="text-center lead">**1. Communication efficace, 2. Cohésion & solidarité, 3. Vie étudiante active, 4. Innovation & opportunités.**</p>
+    </div>
+</section>
+<!-- ... -->
 
-        <ul class="list-unstyled">
-          <li class="d-flex align-items-start mb-2"><i class="fa-solid fa-check me-3 text-success"></i>Plateforme d'information officielle</li>
-          <li class="d-flex align-items-start mb-2"><i class="fa-solid fa-check me-3 text-success"></i>Événements mensuels et sorties pédagogiques</li>
-          <li class="d-flex align-items-start mb-2"><i class="fa-solid fa-check me-3 text-success"></i>Fonds pour projets étudiants (FIE)</li>
-        </ul>
-      </div>
-      <div class="col-lg-6" data-aos="zoom-in">
-        <div class="card p-4 shadow-sm">
-          <h5>Chiffres Clés</h5>
-          <div class="mt-3">
-            <small class="text-muted">Centre Info EDHEG (objectif)</small>
-            <div class="progress-wrap mt-1" aria-hidden="true"><div class="progress-bar" style="width:35%" role="progressbar"></div></div>
-            <div class="d-flex justify-content-between mt-1"><small>0%</small><small>100%</small></div>
+<!-- STATS EN TEMPS RÉEL (MISES À JOUR) -->
+<section id="stats" class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2>Statistiques en Temps Réel 📊</h2>
+            <p class="lead text-muted">Transparence totale : soutiens et membres affichés en direct via notre Hub IDEA (Google Sheets & Apps Script).</p>
+        </div>
+        
+        <div class="stat-error d-none" id="fetch-error">
+            <i class="fas fa-exclamation-triangle me-2"></i> **Problème de connexion !** Impossible de charger les données. Vérifiez vos URL Apps Script.
+        </div>
 
-            <div class="mt-3">
-              <small class="text-muted">Projets financés</small>
-              <div class="d-flex align-items-center gap-3 mt-2">
-                <div>
-                  <div class="fw-bold fs-4" data-target="5">0</div>
-                  <small class="text-muted">Objectif</small>
+        <div class="row g-4">
+            <!-- VOTES / SOUTIEN -->
+            <div class="col-lg-6">
+                <div class="stat-box h-100" data-aos="fade-up">
+                    <i class="fas fa-vote-yea fa-3x text-primary mb-3"></i>
+                    <h4>Soutien Reçu (Votes)</h4>
+                    <div class="stat-number" id="total-votes-stat">0</div>
+                    
+                    <h5 class="mt-4">Derniers Soutiens (Motivation)</h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Filière</th>
+                                    <th>Motivation</th>
+                                </tr>
+                            </thead>
+                            <tbody id="votes-list-body">
+                                <tr><td colspan="3">Chargement...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="vr"></div>
-                <div>
-                  <div class="fw-bold fs-4">10+</div>
-                  <small class="text-muted">Accompagnement</small>
-                </div>
-              </div>
             </div>
 
-          </div>
+            <!-- MEMBRES INSCRITS -->
+            <div class="col-lg-6">
+                <div class="stat-box h-100" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-users-gear fa-3x text-accent mb-3"></i>
+                    <h4>Membres Inscrits (Équipe)</h4>
+                    <div class="stat-number" id="total-members-stat">0</div>
+                    
+                    <h5 class="mt-4">L'Équipe d'Action (Volontaires)</h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Filière</th>
+                                    <th>Rôle</th>
+                                </tr>
+                            </thead>
+                            <tbody id="members-list-body">
+                                <tr><td colspan="3">Chargement...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
-<!-- PROGRAM -->
-<section id="program" class="py-5 bg-light">
-  <div class="container">
-    <div class="text-center mb-5" data-aos="fade-up">
-      <h2>Programme — 4 piliers SMART</h2>
-      <p class="text-muted">Des actions claires, mesurables et réalisables pour une EDHEG plus forte.</p>
-    </div>
 
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3" data-aos="flip-up">
-        <div class="card h-100 p-4">
-          <div class="pill mb-3"><i class="fa-solid fa-rss"></i> Communication</div>
-          <h5>Centre Info EDHEG</h5>
-          <p class="text-muted">Plateforme centralisée, réponses <strong>&lt;24h</strong>, transparence totale.</p>
-          <div class="mt-auto"><small class="text-muted">Indicateurs : -75% questions externes</small></div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3" data-aos="flip-up" data-aos-delay="80">
-        <div class="card h-100 p-4">
-          <div class="pill mb-3"><i class="fa-solid fa-hands-bubbles"></i> Cohésion</div>
-          <h5>Challenge Inter-Filières</h5>
-          <p class="text-muted">Événements, clubs, et journées de co-création.</p>
-          <div class="mt-auto"><small class="text-muted">Indicateurs : +50% participation</small></div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3" data-aos="flip-up" data-aos-delay="160">
-        <div class="card h-100 p-4">
-          <div class="pill mb-3"><i class="fa-solid fa-calendar-days"></i> Vie Étudiante</div>
-          <h5>Ateliers & Sorties</h5>
-          <p class="text-muted">Ateliers mensuels, 2 sorties pédagogiques par semestre.</p>
-          <div class="mt-auto"><small class="text-muted">Indicateurs : 40% d'engagement M2</small></div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3" data-aos="flip-up" data-aos-delay="240">
-        <div class="card h-100 p-4">
-          <div class="pill mb-3"><i class="fa-solid fa-lightbulb"></i> Innovation</div>
-          <h5>Fonds & Accompagnement (FIE)</h5>
-          <p class="text-muted">Financer les projets étudiants et connecter aux pros.</p>
-          <div class="mt-auto"><small class="text-muted">Indicateurs : financer 5 projets / semestre</small></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ROADMAP -->
-<section id="roadmap" class="py-5">
-  <div class="container">
-    <div class="text-center mb-4" data-aos="fade-up">
-      <h2>Roadmap — 6 mois</h2>
-      <p class="text-muted">Plan d'actions rapide et mesurable.</p>
-    </div>
-
-    <div class="row g-4 align-items-center">
-      <div class="col-lg-6" data-aos="fade-right">
-        <ul class="timeline list-unstyled">
-          <li class="mb-4">
-            <h6>Mois 0 - 1</h6>
-            <p class="text-muted">Lancement du Centre Info EDHEG, groupe officiel, sondage besoins étudiants.</p>
-          </li>
-          <li class="mb-4">
-            <h6>Mois 2</h6>
-            <p class="text-muted">1ère sortie pédagogique, lancement Fonds Projets.</p>
-          </li>
-          <li class="mb-4">
-            <h6>Mois 3 - 4</h6>
-            <p class="text-muted">Challenge inter-filières, ateliers réguliers, recrutement mentors.</p>
-          </li>
-          <li class="mb-4">
-            <h6>Mois 5 - 6</h6>
-            <p class="text-muted">Évaluation, rapport public, itération et plan pour l'année suivante.</p>
-          </li>
-        </ul>
-      </div>
-      <div class="col-lg-6" data-aos="zoom-in">
-        <div class="card p-4 shadow-sm">
-          <h5>Visualisez les progrès</h5>
-          <p class="text-muted">Barres de progression et compteurs pour montrer la transparence.</p>
-          <div class="mb-3">
-            <small class="text-muted">Centre Info EDHEG</small>
-            <div class="progress mt-1" role="progressbar" style="height:14px"><div class="progress-bar bg-success" style="width:40%"></div></div>
-          </div>
-          <div class="mb-3">
-            <small class="text-muted">Projets financés</small>
-            <div class="progress mt-1" role="progressbar" style="height:14px"><div class="progress-bar bg-warning" style="width:20%"></div></div>
-          </div>
-          <div class="mb-0">
-            <small class="text-muted">Participation aux événements</small>
-            <div class="progress mt-1" role="progressbar" style="height:14px"><div class="progress-bar bg-primary" style="width:12%"></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- JOIN / CONTACT -->
-<section id="join" class="py-5 bg-light">
+<!-- JOIN / CONTACT (Formulaire de Soumission) -->
+<section id="join" class="py-5">
   <div class="container">
     <div class="row g-4 align-items-center">
       <div class="col-lg-6" data-aos="fade-up">
-        <h3>Rejoins l'équipe</h3>
-        <p class="text-muted">Tu veux aider ? Deviens volontaire pour organiser un évènement, co-animer un atelier ou être ambassadeur filière.</p>
-        <ul>
-          <li>Responsable communication</li>
-          <li>Coordinateur événements</li>
-          <li>Chargé relations entreprises</li>
-        </ul>
-        <a class="btn btn-primary mt-3" href="#vote">Je veux aider</a>
+        <h3>Rejoins l'équipe ou Soutiens ma vision !</h3>
+        <p class="lead text-muted">Deux façons d'agir : voter symboliquement pour ma vision ou devenir un acteur du changement dans l'équipe.</p>
       </div>
       <div class="col-lg-6" data-aos="fade-left">
-        <div class="card p-4">
-          <h5>Contact rapide</h5>
-          <form action="https://formsubmit.co/ouragaangemichel267@gmail.com" method="POST">
-  <input type="hidden" name="_autoresponse" value="Merci pour votre vote ! Vous faites partie de ceux qui croient en une EDHEG plus unie, plus active et plus innovante. Je vous tiendrai informé de la suite. — Ange-Michel Ouraga">
-  <input type="hidden" name="_next" value="#merci">
-  <input type="hidden" name="_autoresponse" value="Merci pour votre vote ! Vous faites partie de ceux qui croient en une EDHEG plus unie, plus active et plus innovante. Je vous tiendrai informé de la suite. — Ange-Michel Ouraga">
+        <div class="card p-4 shadow-lg">
+          <h5>Formulaire de Soutien / Recrutement</h5>
+          <form id="joinForm">
             <div class="mb-3">
-              <label class="form-label">Nom</label>
-              <input class="form-control" required>
+              <label for="nom" class="form-label">Nom complet</label>
+              <input type="text" class="form-control" id="nom" name="Nom complet" required>
             </div>
             <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="email" class="form-control" required>
+              <label for="filiere" class="form-label">Filière / Niveau (ex: IDEA L2, GESTION M1)</label>
+              <input type="text" class="form-control" id="filiere" name="Filière / Niveau" required>
             </div>
             <div class="mb-3">
-              <label class="form-label">Message</label>
-              <textarea class="form-control" rows="3" required></textarea>
+              <label for="role" class="form-label">Je veux...</label>
+              <select class="form-select" id="role" name="Rôle Souhaité" required>
+                  <option value="" disabled selected>Choisir une option</option>
+                  <option value="Vote/Soutien Simple">Voter / Apporter mon Soutien (Simple)</option>
+                  <option value="Membre Equipe Communication">Devenir Membre (Com. / Réseaux)</option>
+                  <option value="Membre Equipe Evenementiel">Devenir Membre (Événements / Logistique)</option>
+                  <option value="Membre Equipe Projets IDEA">Devenir Membre (Projets Tech / IDEA)</option>
+              </select>
             </div>
-            <button class="btn btn-outline-primary" type="submit">Envoyer</button>
+            <div class="mb-3">
+              <label for="motivation" class="form-label">Votre motivation / Message de soutien (max 100 mots)</label>
+              <textarea class="form-control" id="motivation" name="Votre motivation" rows="3" required></textarea>
+            </div>
+            <button class="btn btn-primary w-100 btn-animate" type="submit">Envoyer et Rejoindre le Mouvement</button>
+            <div id="form-message" class="mt-3 text-center d-none"></div>
           </form>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- MESSAGE DE CONFIRMATION -->
-<section id="merci" class="py-5 text-center" style="display:none;">
-  <div class="container">
-    <div class="card p-5 shadow-sm">
-      <h2>Merci !</h2>
-      <p class="text-muted">Votre message a bien été envoyé. Nous vous contacterons très bientôt.</p>
-    </div>
-  </div>
-</section>
-
-<script>
-// Affiche le message de confirmation quand on arrive sur #merci
-if(window.location.hash === "#merci"){
-  const merciSection = document.getElementById('merci');
-  if(merciSection) merciSection.style.display = 'block';
-  window.scrollTo({ top: merciSection.offsetTop, behavior: 'smooth' });
-}
-</script>
-
-<!-- VOTE CTA -->
-<section id="vote" class="py-5 text-center">
-  <div class="container" data-aos="zoom-in">
-    <div class="card p-5 shadow-sm">
-      <h2>Votez pour Ouraga Ange‑Michel</h2>
-      <p class="text-muted">Un leadership d'action, mesurable et inclusif. Votre voix compte.</p>
-      <a class="btn btn-lg cta-btn" href="#">Voter maintenant</a>
     </div>
   </div>
 </section>
@@ -326,12 +228,11 @@ if(window.location.hash === "#merci"){
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-6 py-3">
-        <small>© <strong>Ouraga Ange‑Michel</strong> — Campagne EDHEG • Tous droits réservés</small>
+        <small>© <strong>Ouraga Ange‑Michel</strong> — Campagne EDHEG • Construit avec l'esprit IDEA</small>
       </div>
       <div class="col-md-6 text-md-end py-3">
-        <a class="me-3"><i class="fa-brands fa-facebook"></i></a>
-        <a class="me-3"><i class="fa-brands fa-instagram"></i></a>
-        <a class="me-3"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="#" class="me-3 text-muted"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" class="me-3 text-muted"><i class="fa-brands fa-linkedin"></i></a>
       </div>
     </div>
   </div>
@@ -343,34 +244,128 @@ if(window.location.hash === "#merci"){
 <script>
   AOS.init({duration:800, once:true});
 
-  // simple counter animation
-  document.addEventListener('DOMContentLoaded', function(){
-    const counters = document.querySelectorAll('[data-target]');
-    counters.forEach(function(el){
-      const target = +el.getAttribute('data-target');
-      let current = 0;
-      const step = Math.max(1, Math.floor(target/40));
-      const interval = setInterval(()=>{
-        current += step;
-        if(current >= target){ el.textContent = target; clearInterval(interval); }
-        else el.textContent = current;
-      },30);
-    });
+  // =================================================================
+  // CONFIGURATION GAS API (MISES À JOUR)
+  // =================================================================
 
-    // progress bars auto-fill demo (replace with real data)
-    document.querySelectorAll('.progress-bar').forEach(function(pb){
-      const w = pb.style.width || '0%';
-      pb.style.transition = 'width 1.2s ease';
-      setTimeout(()=> pb.style.width = w, 200);
-    });
+  // URL pour soumettre les données (votre script GAS doPost - URL de l'image d0e3fa.png)
+  const GAS_POST_URL = 'https://script.google.com/macros/s/AKfycbx8xCVGqbsDxDi115uBX7FVQe54OiQaBv872XIKMbL6XD4SRFrv0YR-2KXQrWM_80i-/exec';
+
+  // URL pour récupérer les données (votre script GAS unifié doGet - URL du dernier message utilisateur)
+  const GAS_FETCH_URL = 'https://script.google.com/macros/s/AKfycbweqnr98zvtfi2NxV6Ow9YyNGuT-ECl1PCNRa_9rA-hzl_O3iz6slxHWRIfODmJIlq5XQ/exec';
+  
+  // NOTE: Vérifiez que GAS_POST_URL pointe vers l'API qui écrit les données
+  // et GAS_FETCH_URL pointe vers l'API qui lit les données (celle corrigée en Code.gs).
+
+  // =================================================================
+  // LOGIQUE JAVASCRIPT DE RÉCUPÉRATION ET D'AFFICHAGE
+  // =================================================================
+
+  // Fonction 1 : Récupérer les données et mettre à jour les statistiques
+  async function fetchStats() {
+      const errorDiv = document.getElementById('fetch-error');
+      errorDiv.classList.add('d-none');
+      
+      try {
+          // --- 1. RÉCUPÉRER LES VOTES/SOUTIENS (Feuille "Élection EDHEG") ---
+          // Utilise le paramètre ?sheet=votes pour cibler la bonne feuille dans votre script GAS unifié
+          const votesResponse = await fetch(GAS_FETCH_URL + '?sheet=votes'); 
+          const votesData = await votesResponse.json();
+
+          if (votesData.error) throw new Error(votesData.message);
+          
+          const votes = votesData.rows || [];
+          document.getElementById('live-votes').textContent = votes.length;
+          document.getElementById('total-votes-stat').textContent = votes.length;
+          
+          const votesBody = document.getElementById('votes-list-body');
+          votesBody.innerHTML = '';
+          
+          votes.slice(0, 10).forEach(item => {
+              const row = votesBody.insertRow();
+              // ATTENTION : Les clés JSON doivent correspondre aux en-têtes exacts de votre feuille Sheets
+              row.insertCell().textContent = item["Nom complet"] || 'Anonyme'; 
+              row.insertCell().textContent = item["Filière / Niveau"] || 'N/A';              
+              row.insertCell().textContent = (item["Votre motivation"] || '').substring(0, 40) + '...'; 
+          });
+          if (votes.length === 0) votesBody.innerHTML = '<tr><td colspan="3">Aucun soutien enregistré pour l\'instant.</td></tr>';
+
+          // --- 2. RÉCUPÉRER LES MEMBRES DE L'ÉQUIPE (Feuille "Rejoindre l'équipe") ---
+          // Utilise le paramètre ?sheet=equipe
+          const membersResponse = await fetch(GAS_FETCH_URL + '?sheet=equipe'); 
+          const membersData = await membersResponse.json();
+
+          if (membersData.error) throw new Error(membersData.message);
+
+          const members = membersData.rows || [];
+          document.getElementById('live-members').textContent = members.length;
+          document.getElementById('total-members-stat').textContent = members.length;
+          
+          const membersBody = document.getElementById('members-list-body');
+          membersBody.innerHTML = '';
+
+          members.slice(0, 10).forEach(item => {
+              const row = membersBody.insertRow();
+              // ATTENTION : Les clés JSON doivent correspondre aux en-têtes exacts de votre feuille Sheets
+              row.insertCell().textContent = item["Nom complet"] || 'Anonyme'; 
+              row.insertCell().textContent = item["Filière / Niveau"] || 'N/A';              
+              row.insertCell().textContent = item["Rôle Souhaité"] || 'Volontaire'; 
+          });
+          if (members.length === 0) membersBody.innerHTML = '<tr><td colspan="3">Aucun membre actif enregistré pour l\'instant.</td></tr>';
+
+      } catch (error) {
+          console.error('Erreur lors du chargement des statistiques:', error);
+          errorDiv.classList.remove('d-none');
+          document.getElementById('votes-list-body').innerHTML = '<tr><td colspan="3">Échec du chargement</td></tr>';
+          document.getElementById('members-list-body').innerHTML = '<tr><td colspan="3">Échec du chargement</td></tr>';
+      }
+  }
+
+  // Fonction 2 : Soumettre le formulaire (gestionnaire d'événement)
+  document.getElementById('joinForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const formMessage = document.getElementById('form-message');
+      
+      formData.append('action', 'post_data'); // Action pour le script POST GAS (ajustez si besoin)
+
+      formMessage.classList.remove('d-none', 'text-success', 'text-danger');
+      formMessage.classList.add('text-muted');
+      formMessage.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Envoi en cours...';
+
+      try {
+          // NOTE: On utilise GAS_POST_URL pour l'envoi des données
+          const response = await fetch(GAS_POST_URL, {
+              method: 'POST',
+              body: formData,
+          });
+
+          // Le script POST GAS doit retourner un JSON avec {status: "SUCCESS"}
+          const result = await response.json(); 
+
+          if (result.status === 'SUCCESS') {
+              formMessage.classList.remove('text-muted');
+              formMessage.classList.add('text-success');
+              formMessage.innerHTML = '<i class="fas fa-check-circle me-2"></i> Merci pour votre soutien et/ou votre engagement !';
+              form.reset();
+              fetchStats(); // Actualiser les stats après la soumission
+          } else {
+              throw new Error(result.message || 'Erreur inconnue du serveur GAS.');
+          }
+
+      } catch (error) {
+          console.error('Erreur de soumission:', error);
+          formMessage.classList.remove('text-muted');
+          formMessage.classList.add('text-danger');
+          formMessage.innerHTML = `<i class="fas fa-times-circle me-2"></i> Échec de l'envoi. ${error.message}`;
+      }
   });
 
-  // contact form demo handler
-  document.getElementById('contactForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    alert('Merci ! Votre message a été reçu.');
-    this.reset();
-  });
+  // Charger les statistiques au démarrage et les rafraîchir
+  document.addEventListener('DOMContentLoaded', fetchStats);
+  setInterval(fetchStats, 30000); // Rafraîchir toutes les 30 secondes pour le "live"
+
 </script>
 </body>
 </html>
