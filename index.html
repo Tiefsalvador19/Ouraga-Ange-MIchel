@@ -27,6 +27,7 @@
     .nav-brand{font-weight:700; letter-spacing:.2px}
     .btn-animate{transition:all .25s ease}
     .btn-animate:hover{transform:translateY(-4px); box-shadow:0 12px 30px rgba(0,0,0,.12)}
+
     .hero{
       padding:6rem 0 5rem;
       background:
@@ -42,160 +43,14 @@
       box-shadow:0 18px 50px rgba(15,23,42,.08);
     }
 
-    /* iPhone 15 Pro style */
-    .iphone-wrapper{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-    .iphone-outer{
-      width:320px;
-      max-width:100%;
-      aspect-ratio:9/19.5;
-      border-radius:3rem;
-      padding:6px;
-      background:linear-gradient(135deg,#f9fafb,#d1d5db,#9ca3af);
-      box-shadow:
-        0 20px 60px rgba(15,23,42,.35),
-        inset 0 0 0 1px rgba(255,255,255,.8);
-      position:relative;
-    }
-    .iphone-inner{
+    /* Photo héro */
+    .hero-photo{
+      max-width:420px;
       width:100%;
-      height:100%;
-      border-radius:2.5rem;
-      overflow:hidden;
-      background:radial-gradient(circle at top,#0f172a 0%,#020617 45%,#020617 100%);
-      position:relative;
-      color:#f9fafb;
-      display:flex;
-      flex-direction:column;
-      padding:14px 12px 18px;
-    }
-    .iphone-dynamic-island{
-      position:absolute;
-      top:10px;
-      left:50%;
-      transform:translateX(-50%);
-      width:110px;
-      height:26px;
-      border-radius:999px;
-      background:#020617;
-      box-shadow:0 0 0 1px rgba(148,163,184,.45);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-      font-size:.7rem;
-    }
-    .island-dot{
-      width:6px;
-      height:6px;
-      border-radius:999px;
-      background:#22c55e;
-    }
-    .iphone-status-row{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      font-size:.7rem;
-      opacity:.9;
-      margin-top:30px;
-      margin-bottom:6px;
-    }
-    .iphone-chip{
-      border-radius:999px;
-      padding:3px 8px;
-      font-size:.68rem;
-      background:rgba(148,163,184,.22);
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-    }
-    .iphone-main-card{
-      flex:1;
-      border-radius:1.4rem;
-      padding:12px 12px 10px;
-      background:radial-gradient(circle at 0 0,#38bdf8 0%,transparent 55%),
-                 radial-gradient(circle at 100% 100%,#f97316 0%,transparent 55%),
-                 rgba(15,23,42,.9);
-      box-shadow:0 15px 35px rgba(15,23,42,.7);
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-    .iphone-badges{
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-      margin-top:4px;
-    }
-    .iphone-stat-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:8px;
-      margin-top:8px;
-    }
-    .iphone-stat-tile{
-      border-radius:.9rem;
-      padding:8px;
-      background:rgba(15,23,42,.85);
-      border:1px solid rgba(148,163,184,.4);
-      display:flex;
-      flex-direction:column;
-      gap:3px;
-    }
-    .iphone-stat-label{
-      font-size:.63rem;
-      color:#cbd5f5;
-    }
-    .iphone-stat-number{
-      font-size:1.25rem;
-      font-weight:700;
-    }
-    .iphone-footer{
-      margin-top:10px;
-      display:flex;
-      justify-content:space-between;
-      gap:8px;
-      font-size:.7rem;
-    }
-    .iphone-cta{
-      flex:1;
-      border-radius:999px;
-      padding:7px 0;
-      border:none;
-      background:linear-gradient(135deg,#0ea5e9,#6366f1);
-      color:white;
-      font-size:.75rem;
-      font-weight:600;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-    }
-    .iphone-ghost-btn{
-      flex:1;
-      border-radius:999px;
-      padding:7px 0;
-      border:1px solid rgba(148,163,184,.75);
-      background:transparent;
-      color:#e5e7eb;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-    }
-    .iphone-home-bar{
-      position:absolute;
-      bottom:8px;
-      left:50%;
-      transform:translateX(-50%);
-      width:90px;
-      height:3.5px;
-      border-radius:999px;
-      background:#e5e7eb;
-      opacity:.75;
+      border-radius:1.8rem;
+      object-fit:cover;
+      box-shadow:0 24px 60px rgba(15,23,42,.45);
+      border:6px solid #ffffff;
     }
 
     /* Statistiques */
@@ -308,7 +163,7 @@
 
     @media (max-width: 991.98px){
       .hero{padding-top:4.5rem;}
-      .iphone-outer{margin-top:2rem;}
+      .hero-photo{margin-top:2rem;}
     }
   </style>
 </head>
@@ -325,6 +180,7 @@
       <ul class="navbar-nav ms-auto align-items-lg-center">
         <li class="nav-item"><a class="nav-link" href="#about">Mon Parcours</a></li>
         <li class="nav-item"><a class="nav-link" href="#program">Programme SMART</a></li>
+        <li class="nav-item"><a class="nav-link" href="#values">Vitrine des valeurs</a></li>
         <li class="nav-item"><a class="nav-link" href="#stats">Statistiques Live</a></li>
         <li class="nav-item"><a class="nav-link" href="#join">Soutenir / Rejoindre</a></li>
         <li class="nav-item ms-3"><a class="btn btn-primary btn-animate" href="#join">Voter / Soutenir</a></li>
@@ -339,26 +195,26 @@
     <div class="row align-items-center g-5">
       <div class="col-lg-6" data-aos="fade-right">
         <div class="mb-3 section-title-pill">
-          <i class="fa-solid fa-bolt"></i> Campagne EDHEG • Liste IDEA
+          <i class="fa-solid fa-bolt"></i> Campagne EDHEG • Liste IDA
         </div>
         <h1 class="display-5 fw-bold mt-2">
           Un Leader, Une Vision :<br>
           <span class="text-primary">Action & Innovation au service des étudiants.</span>
         </h1>
         <p class="lead text-muted mt-3">
-          Étudiant <strong>IDEA</strong>, lauréat <strong>ECOCIR</strong>, chef de projet engagé.<br>
-          <strong>Mon ambition :</strong> transformer nos frustrations (salle, communication, stage, projet) en
+          Étudiant <strong>IDA (Informaticien Développeur d’Application)</strong>, lauréat <strong>ECOCIR</strong>, chef de projet engagé.<br>
+          <strong>Mon ambition :</strong> transformer nos frustrations en
           <strong>opportunités concrètes</strong> pour toute la communauté EDHEG.
         </p>
 
         <ul class="list-unstyled text-muted small mb-3">
-          <li><i class="fa-solid fa-check-circle text-success me-2"></i> Plus de visibilité sur les projets IDEA & initiatives étudiantes.</li>
+          <li><i class="fa-solid fa-check-circle text-success me-2"></i> Plus de visibilité sur les projets IDA & initiatives étudiantes.</li>
           <li><i class="fa-solid fa-check-circle text-success me-2"></i> Des activités utiles : masterclass, jobs étudiants, projets concrets.</li>
           <li><i class="fa-solid fa-check-circle text-success me-2"></i> Une gouvernance transparente, avec des chiffres mis à jour en direct.</li>
         </ul>
 
         <div class="d-flex flex-wrap gap-3 mt-3">
-          <a class="btn cta-btn btn-lg btn-animate" href="#program">
+          <a class="btn cta-btn btn-lg btn-animate btn-primary" href="#program">
             Découvrir le programme SMART
           </a>
           <a class="btn btn-outline-secondary btn-lg btn-animate" href="#join">
@@ -393,99 +249,15 @@
             </div>
           </div>
           <p class="mt-2 small text-muted">
-            Données synchronisées avec notre <strong>Hub IDEA</strong> (Google Sheets + Apps Script).
+            Données synchronisées avec notre <strong>Hub IDA</strong> (Google Forms + Google Sheets).
           </p>
         </div>
       </div>
 
-      <!-- iPhone 15 Pro Mockup -->
-      <div class="col-lg-6" data-aos="fade-left">
-        <div class="iphone-wrapper">
-          <div class="iphone-outer">
-            <div class="iphone-inner">
-              <div class="iphone-dynamic-island">
-                <span class="island-dot"></span>
-                <span style="font-weight:500;">LIVE CAMPAGNE</span>
-              </div>
-
-              <div class="iphone-status-row">
-                <span><i class="fa-solid fa-signal"></i> EDHEG Hub</span>
-                <span><i class="fa-regular fa-clock me-1"></i> 12:24</span>
-              </div>
-
-              <div class="iphone-chip mb-2">
-                <i class="fa-solid fa-graduation-cap"></i>
-                IDEA • EDHEG 2025
-              </div>
-
-              <div class="iphone-main-card">
-                <div>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                      <div style="font-size:.7rem; text-transform:uppercase; letter-spacing:.12em; opacity:.9;">
-                        Ouraga Ange-Michel
-                      </div>
-                      <div style="font-size:1.05rem; font-weight:700;">
-                        Leader • Action • Innovation
-                      </div>
-                    </div>
-                    <div class="text-end" style="font-size:.7rem;">
-                      <span class="badge bg-light text-dark rounded-pill">
-                        SMART+
-                      </span>
-                      <div class="mt-1 text-warning">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star-half-stroke"></i>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="iphone-badges">
-                    <span class="badge text-bg-light border-0">
-                      <i class="fa-solid fa-bullhorn me-1 text-primary"></i> Communication claire
-                    </span>
-                    <span class="badge text-bg-light border-0">
-                      <i class="fa-solid fa-people-group me-1 text-primary"></i> Cohésion
-                    </span>
-                    <span class="badge text-bg-light border-0">
-                      <i class="fa-solid fa-lightbulb me-1 text-warning"></i> Innovation
-                    </span>
-                  </div>
-
-                  <div class="iphone-stat-grid">
-                    <div class="iphone-stat-tile">
-                      <div class="iphone-stat-label">Soutiens</div>
-                      <div class="iphone-stat-number" id="iphone-votes">0</div>
-                      <div style="font-size:.6rem; color:#a5b4fc;">Objectif : 200+</div>
-                    </div>
-                    <div class="iphone-stat-tile">
-                      <div class="iphone-stat-label">Équipe</div>
-                      <div class="iphone-stat-number" id="iphone-members">0</div>
-                      <div style="font-size:.6rem; color:#a5b4fc;">Com, events, projets</div>
-                    </div>
-                  </div>
-
-                  <div class="mt-2" style="font-size:.7rem; color:#e5e7eb;">
-                    Prochain objectif : <strong>Atelier “IDEA Career & Projects”</strong> ouvert à tous les niveaux.
-                  </div>
-                </div>
-
-                <div class="iphone-footer">
-                  <button class="iphone-cta" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})">
-                    <i class="fa-solid fa-check-circle"></i> Voter / Soutenir
-                  </button>
-                  <button class="iphone-ghost-btn" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
-                    <i class="fa-solid fa-user"></i> Voir le profil
-                  </button>
-                </div>
-              </div>
-
-              <div class="iphone-home-bar"></div>
-            </div>
-          </div>
-        </div>
+      <!-- PHOTO ANGE-MICHEL -->
+      <div class="col-lg-6 text-center" data-aos="fade-left">
+        <!-- Mets ta photo dans le projet et adapte le chemin si besoin -->
+        <img src="img/ange-michel.jpg" alt="Ouraga Ange-Michel" class="hero-photo">
       </div>
     </div>
   </div>
@@ -500,8 +272,9 @@
       </div>
       <h2 class="fw-bold">Qui est Ouraga Ange-Michel ?</h2>
       <p class="lead text-muted">
-        Un étudiant engagé, formé au numérique et à l'innovation sociale, avec une vision très simple : 
-        <strong>faire de l'EDHEG un terrain d'expérimentation pour les projets des étudiants</strong>.
+        Étudiant en <strong>IDA (Informaticien Développeur d’Application)</strong>, passionné par le numérique et
+        l’innovation sociale, avec une vision simple :
+        <strong>faire de l’EDHEG un terrain où les idées deviennent des projets concrets.</strong>
       </p>
     </div>
 
@@ -510,9 +283,9 @@
         <div class="program-pill h-100">
           <h5><span class="icon-circle"><i class="fa-solid fa-laptop-code"></i></span> Projet & Tech</h5>
           <p class="mt-2 text-muted small">
-            • Étudiant IDEA (Innovation, Digital, Entrepreneuriat & Action).<br>
+            • Parcours en IDA : développement d’applications, bases de données, projet logiciel.<br>
             • Chef de projet sur plusieurs plateformes digitales (mobilité, bénévolat, GreenTech).<br>
-            • Capacité à transformer un simple formulaire en un véritable <strong>hub de données</strong> (Apps Script, API, dashboards).
+            • Capacité à transformer un simple formulaire en un véritable <strong>outil de suivi pour les étudiants</strong>.
           </p>
         </div>
       </div>
@@ -528,10 +301,10 @@
       </div>
       <div class="col-lg-4" data-aos="fade-up" data-aos-delay="140">
         <div class="program-pill h-100">
-          <h5><span class="icon-circle"><i class="fa-solid fa-heart-circle-check"></i></span> Valeurs</h5>
+          <h5><span class="icon-circle"><i class="fa-solid fa-heart-circle-check"></i></span> Valeurs humaines</h5>
           <p class="mt-2 text-muted small">
             • Respect, travail, innovation, solidarité.<br>
-            • Refus de la politique de façade : les chiffres et les actions parlent.<br>
+            • Refus de la politique de façade : les actions & les chiffres parlent.<br>
             • Une vision : <strong>“EDHEG, l’école où les idées ne dorment pas”</strong>.
           </p>
         </div>
@@ -560,7 +333,7 @@
           <p class="small text-muted mt-2">
             • Calendrier d'activités partagé (WhatsApp, affichage & écrans).<br>
             • Compte-rendu court après chaque grande décision.<br>
-            • Mise en avant des projets des étudiants IDEA et des autres filières.
+            • Mise en avant des projets des étudiants IDA et des autres filières.
           </p>
         </div>
       </div>
@@ -568,8 +341,8 @@
         <div class="program-pill">
           <h5><span class="icon-circle-accent icon-circle"><i class="fa-solid fa-people-group"></i></span> 2. Cohésion & solidarité</h5>
           <p class="small text-muted mt-2">
-            • Cercles d’accueil pour les nouveaux (L1 & entrants).<br>
-            • Parrainage : un étudiant avancé accompagne un plus jeune.<br>
+            • Cercles d’accueil pour les nouveaux (BTS1 / entrants 1<sup>re</sup> année).<br>
+            • Accompagnement des <strong>BTS2 (2<sup>e</sup> année)</strong> vers les stages & projets.<br>
             • Activités mixtes : jeux, débats, after-class utiles.
           </p>
         </div>
@@ -588,8 +361,8 @@
         <div class="program-pill">
           <h5><span class="icon-circle-accent icon-circle"><i class="fa-solid fa-lightbulb"></i></span> 4. Innovation & opportunités</h5>
           <p class="small text-muted mt-2">
-            • Hub IDEA : formulaires + API pour suivre les besoins en temps réel.<br>
-            • Projets concrets (EDHEG App, micro-incubation d’idées).<br>
+            • Hub IDA : formulaires + tableaux de bord pour suivre les besoins des étudiants.<br>
+            • Projets concrets (mini-apps, outils pour les cours, projets collectifs).<br>
             • Mise en lien avec concours, bourses et programmes (ECOCIR, etc.).
           </p>
         </div>
@@ -603,36 +376,74 @@
         <div class="timeline">
           <div class="timeline-item">
             <span class="timeline-dot"></span>
-            <h6 class="mb-1">Phase 1 – Sensibilisation</h6>
-            <p class="small text-muted mb-0">Rencontre des étudiants dans les salles, collecte des frustrations et propositions via nos formulaires.</p>
+            <h6 class="mb-1">Phase 1 – Écoute & diagnostic</h6>
+            <p class="small text-muted mb-0">Rencontre des étudiants en BTS1 / BTS2, collecte des frustrations et
+              propositions via nos formulaires.</p>
           </div>
           <div class="timeline-item">
             <span class="timeline-dot"></span>
             <h6 class="mb-1">Phase 2 – Co-construction</h6>
-            <p class="small text-muted mb-0">Atelier avec les volontaires de l’équipe pour prioriser 5 actions rapides & 3 projets structurants.</p>
+            <p class="small text-muted mb-0">Atelier avec les volontaires de l’équipe pour prioriser 5 actions rapides & 3 projets
+              structurants.</p>
           </div>
           <div class="timeline-item">
             <span class="timeline-dot"></span>
             <h6 class="mb-1">Phase 3 – Mise en œuvre</h6>
-            <p class="small text-muted mb-0">Calendrier d’actions, indicateurs clairs, suivi via le Hub IDEA & publication régulière des avancées.</p>
+            <p class="small text-muted mb-0">Calendrier d’actions, indicateurs clairs, suivi via le Hub IDA & publication régulière
+              des avancées.</p>
           </div>
         </div>
       </div>
+
+      <!-- On a retiré la carte "Hub IDEA (Formulaires + API)" -->
       <div class="col-lg-6" data-aos="fade-left">
         <div class="card card-ghost p-4 h-100">
-          <h5><i class="fa-solid fa-circle-nodes me-2 text-primary"></i> Le “Hub IDEA” (Formulaires + API)</h5>
-          <p class="small text-muted">
-            Tu vois les liens que tu as déjà mis (formulaires, Apps Script, Google Sheets, etc.) : ils sont au cœur
-            du <strong>Hub IDEA</strong>.
+          <h5><i class="fa-solid fa-circle-nodes me-2 text-primary"></i> Suivi simple & lisible</h5>
+          <p class="small text-muted mb-1">
+            Les formulaires et tableaux de bord que nous mettons en place servent uniquement à
+            <strong>mieux organiser la vie étudiante</strong> : nombre de soutiens, volontaires, idées prioritaires…
           </p>
-          <ul class="small text-muted mb-1">
-            <li>Un formulaire = une donnée utile (besoin, idée, souci, suggestion).</li>
-            <li>Une API = un tableau de bord dynamique pour suivre la réalité du terrain.</li>
-            <li>Chaque étudiant peut voir ce qui se passe : <strong>zéro politique cachée</strong>.</li>
+          <p class="small text-muted mb-0">
+            L’objectif n’est pas de faire compliqué ni “trop technique”, mais de montrer clairement ce qui est fait,
+            où on va et comment chacun peut participer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VITRINE DES VALEURS -->
+<section id="values" class="py-5">
+  <div class="container">
+    <div class="text-center mb-4" data-aos="fade-up">
+      <div class="section-title-pill mb-2">
+        <i class="fa-solid fa-gem"></i> Vitrine de nos pures valeurs
+      </div>
+      <h2 class="fw-bold">Nos valeurs fondamentales</h2>
+      <p class="lead text-muted">
+        Cette section sera notre vitrine officielle pour présenter les valeurs fortes de la liste IDA
+        et de notre génération à l’EDHEG.
+      </p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8" data-aos="fade-up">
+        <div class="card card-ghost p-4">
+          <h5 class="mb-2">En cours de traitement ✨</h5>
+          <p class="small text-muted mb-2">
+            Nous travaillons avec les volontaires pour définir, avec des mots simples et forts, ce que nous mettons
+            derrière :
+          </p>
+          <ul class="small text-muted mb-2">
+            <li><strong>Respect</strong> – entre promotions, entre filières, entre étudiants et administration.</li>
+            <li><strong>Travail & Excellence</strong> – sérieux dans les études, mais aussi dans les projets.</li>
+            <li><strong>Solidarité</strong> – ne laisser personne de côté, surtout les nouveaux (BTS1).</li>
+            <li><strong>Intégrité</strong> – zéro politique cachée, les choses sont dites clairement.</li>
           </ul>
           <p class="small text-muted mb-0">
-            Cette page affiche déjà en direct les soutiens & les membres recrutés. Demain, nous pourrons
-            y afficher : les projets en cours, les ateliers à venir, les besoins urgents, etc.
+            Dès que la version finale sera validée, cette vitrine sera mise à jour avec un texte officiel
+            et, pourquoi pas, une courte vidéo de présentation.
           </p>
         </div>
       </div>
@@ -649,7 +460,7 @@
       </div>
       <h2 class="fw-bold">📊 Transparence totale sur la campagne</h2>
       <p class="lead text-muted">
-        Les chiffres affichés ci-dessous viennent directement de Google Sheets via Apps Script.
+        Les chiffres affichés ci-dessous viennent directement de Google Sheets via nos scripts.
         À chaque nouveau formulaire rempli, le site se met à jour.
       </p>
     </div>
@@ -671,14 +482,14 @@
           <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th>Filière</th>
-                  <th>Motivation</th>
-                </tr>
+              <tr>
+                <th>Nom</th>
+                <th>Filière</th>
+                <th>Motivation</th>
+              </tr>
               </thead>
               <tbody id="votes-list-body">
-                <tr><td colspan="3">Chargement...</td></tr>
+              <tr><td colspan="3">Chargement...</td></tr>
               </tbody>
             </table>
           </div>
@@ -728,8 +539,11 @@
         </p>
         <ul class="text-muted small">
           <li><strong>Vote / soutien simple :</strong> tu nous encourages, on t’informe.</li>
-          <li><strong>Membre équipe :</strong> communication, événementiel, projets IDEA, data…</li>
-          <li><strong>Tout est géré via les formulaires + API</strong> pour suivre les engagements en direct.</li>
+          <li><strong>Membre équipe :</strong> communication, événementiel, projets IDA, données…</li>
+          <li>
+            <strong>BTS1 :</strong> entrants 1<sup>re</sup> année – découverte & intégration.<br>
+            <strong>BTS2 :</strong> 2<sup>e</sup> année – préparation stage, projets & CV.
+          </li>
         </ul>
       </div>
       <div class="col-lg-7" data-aos="fade-left">
@@ -741,8 +555,11 @@
               <input type="text" class="form-control" id="nom" name="Nom complet" required>
             </div>
             <div class="mb-3">
-              <label for="filiere" class="form-label">Filière / Niveau (ex: IDEA L2, GESTION M1)</label>
+              <label for="filiere" class="form-label">Filière / Niveau</label>
               <input type="text" class="form-control" id="filiere" name="Filière / Niveau" required>
+              <small class="form-text text-muted">
+                Exemple : IDA BTS1 (entrant 1<sup>re</sup> année) ou IDA BTS2 (2<sup>e</sup> année).
+              </small>
             </div>
             <div class="mb-3">
               <label for="role" class="form-label">Je veux...</label>
@@ -751,7 +568,7 @@
                 <option value="Vote/Soutien Simple">Voter / Apporter mon Soutien (Simple)</option>
                 <option value="Membre Equipe Communication">Devenir Membre (Com. / Réseaux)</option>
                 <option value="Membre Equipe Evenementiel">Devenir Membre (Événements / Logistique)</option>
-                <option value="Membre Equipe Projets IDEA">Devenir Membre (Projets Tech / IDEA)</option>
+                <option value="Membre Equipe Projets IDA">Devenir Membre (Projets Tech / IDA)</option>
               </select>
             </div>
             <div class="mb-3">
@@ -794,7 +611,7 @@
             </h2>
             <div id="faqTwoCollapse" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
               <div class="accordion-body small text-muted">
-                Les données servent uniquement à la campagne : suivi des soutiens, organisation de l’équipe, 
+                Les données servent uniquement à la campagne : suivi des soutiens, organisation de l’équipe,
                 planification des activités. Elles sont stockées dans Google Sheets sécurisés et ne sont pas revendues.
               </div>
             </div>
@@ -824,10 +641,10 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-6 py-3">
-        <small>© <strong>Ouraga Ange-Michel</strong> — Campagne EDHEG • Construit avec l'esprit IDEA</small>
+        <small>© <strong>Ouraga Ange-Michel</strong> — Campagne EDHEG • Liste IDA</small>
       </div>
       <div class="col-md-6 text-md-end py-3">
-        <!-- Tu peux mettre ici tes vrais liens WhatsApp / LinkedIn -->
+        <!-- Mets ici tes vrais liens WhatsApp / LinkedIn -->
         <a href="#" class="me-3 text-muted"><i class="fa-brands fa-whatsapp"></i></a>
         <a href="#" class="me-3 text-muted"><i class="fa-brands fa-linkedin"></i></a>
       </div>
@@ -841,17 +658,10 @@
 <script>
   AOS.init({duration:800, once:true});
 
-  // =================================================================
-  // CONFIGURATION GAS API (MISES À JOUR)
-  // =================================================================
-
-  // URL pour soumettre les données (script GAS doPost)
+  // URLs Apps Script
   const GAS_POST_URL = 'https://script.google.com/macros/s/AKfycbx8xCVGqbsDxDi115uBX7FVQe54OiQaBv872XIKMbL6XD4SRFrv0YR-2KXQrWM_80i-/exec';
-
-  // URL pour récupérer les données (script GAS unifié doGet)
   const GAS_FETCH_URL = 'https://script.google.com/macros/s/AKfycbweqnr98zvtfi2NxV6Ow9YyNGuT-ECl1PCNRa_9rA-hzl_O3iz6slxHWRIfODmJIlq5XQ/exec';
 
-  // Fonction 1 : Récupérer les données et mettre à jour les statistiques
   async function fetchStats() {
     const errorDiv = document.getElementById('fetch-error');
     errorDiv.classList.add('d-none');
@@ -865,8 +675,6 @@
       const votes = votesData.rows || [];
       document.getElementById('live-votes').textContent = votes.length;
       document.getElementById('total-votes-stat').textContent = votes.length;
-      // iPhone mini-dashboard
-      document.getElementById('iphone-votes').textContent = votes.length;
 
       const votesBody = document.getElementById('votes-list-body');
       votesBody.innerHTML = '';
@@ -886,7 +694,6 @@
       const members = membersData.rows || [];
       document.getElementById('live-members').textContent = members.length;
       document.getElementById('total-members-stat').textContent = members.length;
-      document.getElementById('iphone-members').textContent = members.length;
 
       const membersBody = document.getElementById('members-list-body');
       membersBody.innerHTML = '';
@@ -906,7 +713,6 @@
     }
   }
 
-  // Fonction 2 : Soumettre le formulaire
   document.getElementById('joinForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const form = e.target;
@@ -933,19 +739,19 @@
         form.reset();
         fetchStats();
       } else {
-        throw new Error(result.message || 'Erreur inconnue du serveur GAS.');
+        throw new Error(result.message || 'Erreur inconnue du serveur.');
       }
 
     } catch (error) {
       console.error('Erreur de soumission:', error);
       formMessage.classList.remove('text-muted');
       formMessage.classList.add('text-danger');
-      formMessage.innerHTML = `<i class="fas fa-times-circle me-2"></i> Échec de l\'envoi. ${error.message}`;
+      formMessage.innerHTML = `<i class="fas fa-times-circle me-2"></i> Échec de l'envoi. ${error.message}`;
     }
   });
 
   document.addEventListener('DOMContentLoaded', fetchStats);
-  setInterval(fetchStats, 30000); // rafraîchissement toutes les 30s
+  setInterval(fetchStats, 30000);
 </script>
 </body>
 </html>
