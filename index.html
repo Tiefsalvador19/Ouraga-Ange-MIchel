@@ -12,26 +12,304 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
   <style>
-    /* CSS pour un look chic et percutant */
     :root{
       --primary:#0d6efd; /* Bleu dominant */
       --accent:#ff7a00; /* Orange percutant */
       --muted:#6c757d;
-      --glass: rgba(255,255,255,0.75);
+      --glass: rgba(255,255,255,0.78);
+      --dark-bg:#050816;
     }
-    body{background: linear-gradient(180deg,#f6f9ff 0%, #ffffff 100%); color:#222}
-    .hero{background: linear-gradient(90deg, rgba(13,110,253,0.06), rgba(255,122,0,0.03)); padding:6rem 0}
-    .card-ghost{background:var(--glass); backdrop-filter: blur(6px); border-radius:1rem}
+    body{
+      background: radial-gradient(circle at top, #e2ecff 0%, #ffffff 40%, #f7f7ff 100%);
+      color:#222;
+      scroll-behavior:smooth;
+    }
     .nav-brand{font-weight:700; letter-spacing:.2px}
-    .cta-btn{background:var(--primary); color:#fff}
-    .btn-animate:hover{transform:translateY(-4px); transition:all .25s ease}
-    .hero-img{max-width:480px; width:100%; border-radius:1rem; box-shadow:0 10px 40px rgba(13,110,253,0.08)}
+    .btn-animate{transition:all .25s ease}
+    .btn-animate:hover{transform:translateY(-4px); box-shadow:0 12px 30px rgba(0,0,0,.12)}
+    .hero{
+      padding:6rem 0 5rem;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(13,110,253,.16), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(255,122,0,.14), transparent 55%),
+        linear-gradient(180deg,#f6f9ff 0%, #ffffff 100%);
+    }
+    .card-ghost{
+      background:var(--glass);
+      backdrop-filter:blur(14px);
+      border-radius:1.1rem;
+      border:1px solid rgba(255,255,255,.6);
+      box-shadow:0 18px 50px rgba(15,23,42,.08);
+    }
 
-    /* Styles de la section Statistique */
-    .stat-box{padding:20px; text-align:center; background:#fff; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.05); min-height: 400px;}
-    .stat-number{font-size:3rem; font-weight:700; color:var(--accent)}
-    .stat-error{background-color:#f8d7da; color:#721c24; border:1px solid #f5c6cb; padding:15px; border-radius:5px; margin-bottom:20px; font-weight: bold;}
-    .table-responsive{max-height: 220px; overflow-y: auto; text-align: left;} 
+    /* iPhone 15 Pro style */
+    .iphone-wrapper{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .iphone-outer{
+      width:320px;
+      max-width:100%;
+      aspect-ratio:9/19.5;
+      border-radius:3rem;
+      padding:6px;
+      background:linear-gradient(135deg,#f9fafb,#d1d5db,#9ca3af);
+      box-shadow:
+        0 20px 60px rgba(15,23,42,.35),
+        inset 0 0 0 1px rgba(255,255,255,.8);
+      position:relative;
+    }
+    .iphone-inner{
+      width:100%;
+      height:100%;
+      border-radius:2.5rem;
+      overflow:hidden;
+      background:radial-gradient(circle at top,#0f172a 0%,#020617 45%,#020617 100%);
+      position:relative;
+      color:#f9fafb;
+      display:flex;
+      flex-direction:column;
+      padding:14px 12px 18px;
+    }
+    .iphone-dynamic-island{
+      position:absolute;
+      top:10px;
+      left:50%;
+      transform:translateX(-50%);
+      width:110px;
+      height:26px;
+      border-radius:999px;
+      background:#020617;
+      box-shadow:0 0 0 1px rgba(148,163,184,.45);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      font-size:.7rem;
+    }
+    .island-dot{
+      width:6px;
+      height:6px;
+      border-radius:999px;
+      background:#22c55e;
+    }
+    .iphone-status-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:.7rem;
+      opacity:.9;
+      margin-top:30px;
+      margin-bottom:6px;
+    }
+    .iphone-chip{
+      border-radius:999px;
+      padding:3px 8px;
+      font-size:.68rem;
+      background:rgba(148,163,184,.22);
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+    }
+    .iphone-main-card{
+      flex:1;
+      border-radius:1.4rem;
+      padding:12px 12px 10px;
+      background:radial-gradient(circle at 0 0,#38bdf8 0%,transparent 55%),
+                 radial-gradient(circle at 100% 100%,#f97316 0%,transparent 55%),
+                 rgba(15,23,42,.9);
+      box-shadow:0 15px 35px rgba(15,23,42,.7);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .iphone-badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top:4px;
+    }
+    .iphone-stat-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:8px;
+      margin-top:8px;
+    }
+    .iphone-stat-tile{
+      border-radius:.9rem;
+      padding:8px;
+      background:rgba(15,23,42,.85);
+      border:1px solid rgba(148,163,184,.4);
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+    }
+    .iphone-stat-label{
+      font-size:.63rem;
+      color:#cbd5f5;
+    }
+    .iphone-stat-number{
+      font-size:1.25rem;
+      font-weight:700;
+    }
+    .iphone-footer{
+      margin-top:10px;
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      font-size:.7rem;
+    }
+    .iphone-cta{
+      flex:1;
+      border-radius:999px;
+      padding:7px 0;
+      border:none;
+      background:linear-gradient(135deg,#0ea5e9,#6366f1);
+      color:white;
+      font-size:.75rem;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+    }
+    .iphone-ghost-btn{
+      flex:1;
+      border-radius:999px;
+      padding:7px 0;
+      border:1px solid rgba(148,163,184,.75);
+      background:transparent;
+      color:#e5e7eb;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+    }
+    .iphone-home-bar{
+      position:absolute;
+      bottom:8px;
+      left:50%;
+      transform:translateX(-50%);
+      width:90px;
+      height:3.5px;
+      border-radius:999px;
+      background:#e5e7eb;
+      opacity:.75;
+    }
+
+    /* Statistiques */
+    .stat-box{
+      padding:20px;
+      text-align:center;
+      background:#fff;
+      border-radius:16px;
+      box-shadow:0 20px 40px rgba(15,23,42,.06);
+      min-height:400px;
+    }
+    .stat-number{
+      font-size:3rem;
+      font-weight:700;
+      color:var(--accent)
+    }
+    .stat-error{
+      background-color:#f8d7da;
+      color:#721c24;
+      border:1px solid #f5c6cb;
+      padding:15px;
+      border-radius:5px;
+      margin-bottom:20px;
+      font-weight:bold;
+    }
+    .table-responsive{max-height:220px; overflow-y:auto; text-align:left;}
+
+    /* Sections */
+    section{scroll-margin-top:80px;}
+    .section-title-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:4px 12px;
+      border-radius:999px;
+      background:rgba(13,110,253,.06);
+      color:var(--primary);
+      font-size:.8rem;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+    .program-pill{
+      border-radius:14px;
+      padding:18px;
+      background:#ffffff;
+      height:100%;
+      box-shadow:0 12px 35px rgba(15,23,42,.04);
+      border:1px solid rgba(226,232,240,.9);
+    }
+    .program-pill h5{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .icon-circle{
+      width:32px;
+      height:32px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(13,110,253,.09);
+      color:var(--primary);
+    }
+    .icon-circle-accent{
+      background:rgba(255,122,0,.08);
+      color:var(--accent);
+    }
+
+    /* Timeline */
+    .timeline{
+      position:relative;
+      padding-left:24px;
+      margin-top:24px;
+    }
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left:8px;
+      top:0;
+      bottom:0;
+      width:2px;
+      background:linear-gradient(to bottom,#0d6efd,#ff7a00);
+      opacity:.35;
+    }
+    .timeline-item{
+      position:relative;
+      margin-bottom:18px;
+    }
+    .timeline-dot{
+      position:absolute;
+      left:-2px;
+      top:4px;
+      width:12px;
+      height:12px;
+      border-radius:999px;
+      background:#fff;
+      border:2px solid #0d6efd;
+    }
+
+    /* FAQ */
+    .faq-item button{
+      text-align:left;
+      font-weight:500;
+    }
+
+    /* Footer */
+    footer{font-size:.9rem;}
+
+    @media (max-width: 991.98px){
+      .hero{padding-top:4.5rem;}
+      .iphone-outer{margin-top:2rem;}
+    }
   </style>
 </head>
 <body>
@@ -55,16 +333,37 @@
   </div>
 </nav>
 
-<!-- HERO SECTION (À Remplir avec votre contenu persuasif) -->
+<!-- HERO -->
 <section class="hero">
   <div class="container">
-    <div class="row align-items-center">
+    <div class="row align-items-center g-5">
       <div class="col-lg-6" data-aos="fade-right">
-        <h1 class="display-5 fw-bold">Un Leader, Une Vision : L'Action et l'Innovation.</h1>
-        <p class="lead text-muted">Étudiant IDEA, lauréat ECOCIR, chef de projet. **Mon engagement :** transformer nos frustrations en opportunités. Ensemble, faisons vivre notre école !</p>
-        <div class="d-flex gap-3 mt-4">
-          <a class="btn cta-btn btn-lg btn-animate" href="#program">Découvrir le programme SMART</a>
-          <a class="btn btn-outline-secondary btn-lg" href="#join">Rejoindre l'équipe</a>
+        <div class="mb-3 section-title-pill">
+          <i class="fa-solid fa-bolt"></i> Campagne EDHEG • Liste IDEA
+        </div>
+        <h1 class="display-5 fw-bold mt-2">
+          Un Leader, Une Vision :<br>
+          <span class="text-primary">Action & Innovation au service des étudiants.</span>
+        </h1>
+        <p class="lead text-muted mt-3">
+          Étudiant <strong>IDEA</strong>, lauréat <strong>ECOCIR</strong>, chef de projet engagé.<br>
+          <strong>Mon ambition :</strong> transformer nos frustrations (salle, communication, stage, projet) en
+          <strong>opportunités concrètes</strong> pour toute la communauté EDHEG.
+        </p>
+
+        <ul class="list-unstyled text-muted small mb-3">
+          <li><i class="fa-solid fa-check-circle text-success me-2"></i> Plus de visibilité sur les projets IDEA & initiatives étudiantes.</li>
+          <li><i class="fa-solid fa-check-circle text-success me-2"></i> Des activités utiles : masterclass, jobs étudiants, projets concrets.</li>
+          <li><i class="fa-solid fa-check-circle text-success me-2"></i> Une gouvernance transparente, avec des chiffres mis à jour en direct.</li>
+        </ul>
+
+        <div class="d-flex flex-wrap gap-3 mt-3">
+          <a class="btn cta-btn btn-lg btn-animate" href="#program">
+            Découvrir le programme SMART
+          </a>
+          <a class="btn btn-outline-secondary btn-lg btn-animate" href="#join">
+            Rejoindre l'équipe d'action
+          </a>
         </div>
 
         <!-- Compteurs Dynamiques -->
@@ -93,104 +392,349 @@
               </div>
             </div>
           </div>
+          <p class="mt-2 small text-muted">
+            Données synchronisées avec notre <strong>Hub IDEA</strong> (Google Sheets + Apps Script).
+          </p>
         </div>
       </div>
-      <div class="col-lg-6 text-center" data-aos="fade-left">
-        <!-- IMAGE DE PROFIL -->
-        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop&s=placeholder" alt="Ouraga Ange-Michel" class="hero-img mt-4 mt-lg-0">
+
+      <!-- iPhone 15 Pro Mockup -->
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="iphone-wrapper">
+          <div class="iphone-outer">
+            <div class="iphone-inner">
+              <div class="iphone-dynamic-island">
+                <span class="island-dot"></span>
+                <span style="font-weight:500;">LIVE CAMPAGNE</span>
+              </div>
+
+              <div class="iphone-status-row">
+                <span><i class="fa-solid fa-signal"></i> EDHEG Hub</span>
+                <span><i class="fa-regular fa-clock me-1"></i> 12:24</span>
+              </div>
+
+              <div class="iphone-chip mb-2">
+                <i class="fa-solid fa-graduation-cap"></i>
+                IDEA • EDHEG 2025
+              </div>
+
+              <div class="iphone-main-card">
+                <div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <div style="font-size:.7rem; text-transform:uppercase; letter-spacing:.12em; opacity:.9;">
+                        Ouraga Ange-Michel
+                      </div>
+                      <div style="font-size:1.05rem; font-weight:700;">
+                        Leader • Action • Innovation
+                      </div>
+                    </div>
+                    <div class="text-end" style="font-size:.7rem;">
+                      <span class="badge bg-light text-dark rounded-pill">
+                        SMART+
+                      </span>
+                      <div class="mt-1 text-warning">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="iphone-badges">
+                    <span class="badge text-bg-light border-0">
+                      <i class="fa-solid fa-bullhorn me-1 text-primary"></i> Communication claire
+                    </span>
+                    <span class="badge text-bg-light border-0">
+                      <i class="fa-solid fa-people-group me-1 text-primary"></i> Cohésion
+                    </span>
+                    <span class="badge text-bg-light border-0">
+                      <i class="fa-solid fa-lightbulb me-1 text-warning"></i> Innovation
+                    </span>
+                  </div>
+
+                  <div class="iphone-stat-grid">
+                    <div class="iphone-stat-tile">
+                      <div class="iphone-stat-label">Soutiens</div>
+                      <div class="iphone-stat-number" id="iphone-votes">0</div>
+                      <div style="font-size:.6rem; color:#a5b4fc;">Objectif : 200+</div>
+                    </div>
+                    <div class="iphone-stat-tile">
+                      <div class="iphone-stat-label">Équipe</div>
+                      <div class="iphone-stat-number" id="iphone-members">0</div>
+                      <div style="font-size:.6rem; color:#a5b4fc;">Com, events, projets</div>
+                    </div>
+                  </div>
+
+                  <div class="mt-2" style="font-size:.7rem; color:#e5e7eb;">
+                    Prochain objectif : <strong>Atelier “IDEA Career & Projects”</strong> ouvert à tous les niveaux.
+                  </div>
+                </div>
+
+                <div class="iphone-footer">
+                  <button class="iphone-cta" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})">
+                    <i class="fa-solid fa-check-circle"></i> Voter / Soutenir
+                  </button>
+                  <button class="iphone-ghost-btn" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+                    <i class="fa-solid fa-user"></i> Voir le profil
+                  </button>
+                </div>
+              </div>
+
+              <div class="iphone-home-bar"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROGRAM SECTION (À Compléter) -->
-<section id="program" class="py-5">
-    <div class="container">
-        <!-- Insérez ici les 4 piliers SMART -->
-        <h2 class="text-center mb-5">🎯 Notre Programme en 4 Axes SMART</h2>
-        <p class="text-center lead">**1. Communication efficace, 2. Cohésion & solidarité, 3. Vie étudiante active, 4. Innovation & opportunités.**</p>
-    </div>
-</section>
-<!-- ... -->
-
-<!-- STATS EN TEMPS RÉEL (MISES À JOUR) -->
-<section id="stats" class="py-5 bg-light">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <h2>Statistiques en Temps Réel 📊</h2>
-            <p class="lead text-muted">Transparence totale : soutiens et membres affichés en direct via notre Hub IDEA (Google Sheets & Apps Script).</p>
-        </div>
-        
-        <div class="stat-error d-none" id="fetch-error">
-            <i class="fas fa-exclamation-triangle me-2"></i> **Problème de connexion !** Impossible de charger les données. Vérifiez vos URL Apps Script.
-        </div>
-
-        <div class="row g-4">
-            <!-- VOTES / SOUTIEN -->
-            <div class="col-lg-6">
-                <div class="stat-box h-100" data-aos="fade-up">
-                    <i class="fas fa-vote-yea fa-3x text-primary mb-3"></i>
-                    <h4>Soutien Reçu (Votes)</h4>
-                    <div class="stat-number" id="total-votes-stat">0</div>
-                    
-                    <h5 class="mt-4">Derniers Soutiens (Motivation)</h5>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Filière</th>
-                                    <th>Motivation</th>
-                                </tr>
-                            </thead>
-                            <tbody id="votes-list-body">
-                                <tr><td colspan="3">Chargement...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- MEMBRES INSCRITS -->
-            <div class="col-lg-6">
-                <div class="stat-box h-100" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-users-gear fa-3x text-accent mb-3"></i>
-                    <h4>Membres Inscrits (Équipe)</h4>
-                    <div class="stat-number" id="total-members-stat">0</div>
-                    
-                    <h5 class="mt-4">L'Équipe d'Action (Volontaires)</h5>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Filière</th>
-                                    <th>Rôle</th>
-                                </tr>
-                            </thead>
-                            <tbody id="members-list-body">
-                                <tr><td colspan="3">Chargement...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- JOIN / CONTACT (Formulaire de Soumission) -->
-<section id="join" class="py-5">
+<!-- ABOUT -->
+<section id="about" class="py-5">
   <div class="container">
-    <div class="row g-4 align-items-center">
-      <div class="col-lg-6" data-aos="fade-up">
-        <h3>Rejoins l'équipe ou Soutiens ma vision !</h3>
-        <p class="lead text-muted">Deux façons d'agir : voter symboliquement pour ma vision ou devenir un acteur du changement dans l'équipe.</p>
+    <div class="text-center mb-4" data-aos="fade-up">
+      <div class="section-title-pill mb-2">
+        <i class="fa-solid fa-user-graduate"></i> Mon Parcours
+      </div>
+      <h2 class="fw-bold">Qui est Ouraga Ange-Michel ?</h2>
+      <p class="lead text-muted">
+        Un étudiant engagé, formé au numérique et à l'innovation sociale, avec une vision très simple : 
+        <strong>faire de l'EDHEG un terrain d'expérimentation pour les projets des étudiants</strong>.
+      </p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-4" data-aos="fade-up">
+        <div class="program-pill h-100">
+          <h5><span class="icon-circle"><i class="fa-solid fa-laptop-code"></i></span> Projet & Tech</h5>
+          <p class="mt-2 text-muted small">
+            • Étudiant IDEA (Innovation, Digital, Entrepreneuriat & Action).<br>
+            • Chef de projet sur plusieurs plateformes digitales (mobilité, bénévolat, GreenTech).<br>
+            • Capacité à transformer un simple formulaire en un véritable <strong>hub de données</strong> (Apps Script, API, dashboards).
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="80">
+        <div class="program-pill h-100">
+          <h5><span class="icon-circle-accent icon-circle"><i class="fa-solid fa-people-group"></i></span> Leadership</h5>
+          <p class="mt-2 text-muted small">
+            • Animation d'équipes projet dans des contextes associatifs et académiques.<br>
+            • Gestion de bénévoles & coordination d'événements.<br>
+            • Habitué à <strong>écouter, décider, et rendre compte</strong> avec transparence.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="140">
+        <div class="program-pill h-100">
+          <h5><span class="icon-circle"><i class="fa-solid fa-heart-circle-check"></i></span> Valeurs</h5>
+          <p class="mt-2 text-muted small">
+            • Respect, travail, innovation, solidarité.<br>
+            • Refus de la politique de façade : les chiffres et les actions parlent.<br>
+            • Une vision : <strong>“EDHEG, l’école où les idées ne dorment pas”</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME SMART -->
+<section id="program" class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-4" data-aos="fade-up">
+      <div class="section-title-pill mb-2">
+        <i class="fa-solid fa-list-check"></i> Programme SMART
+      </div>
+      <h2 class="fw-bold">🎯 Un programme en 4 axes SMART</h2>
+      <p class="lead text-muted mb-0">
+        <strong>S</strong>tructuré • <strong>M</strong>esurable • <strong>A</strong>mbitieux • <strong>R</strong>éaliste • <strong>T</strong>emporel.
+      </p>
+    </div>
+
+    <div class="row g-4 mt-2">
+      <div class="col-md-6 col-lg-3" data-aos="fade-up">
+        <div class="program-pill">
+          <h5><span class="icon-circle"><i class="fa-solid fa-bullhorn"></i></span> 1. Communication claire</h5>
+          <p class="small text-muted mt-2">
+            • Calendrier d'activités partagé (WhatsApp, affichage & écrans).<br>
+            • Compte-rendu court après chaque grande décision.<br>
+            • Mise en avant des projets des étudiants IDEA et des autres filières.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="60">
+        <div class="program-pill">
+          <h5><span class="icon-circle-accent icon-circle"><i class="fa-solid fa-people-group"></i></span> 2. Cohésion & solidarité</h5>
+          <p class="small text-muted mt-2">
+            • Cercles d’accueil pour les nouveaux (L1 & entrants).<br>
+            • Parrainage : un étudiant avancé accompagne un plus jeune.<br>
+            • Activités mixtes : jeux, débats, after-class utiles.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="120">
+        <div class="program-pill">
+          <h5><span class="icon-circle"><i class="fa-solid fa-calendar-check"></i></span> 3. Vie étudiante active</h5>
+          <p class="small text-muted mt-2">
+            • Ateliers “CV, Pitch & LinkedIn”.<br>
+            • Masterclass avec des anciens & professionnels.<br>
+            • Valorisation des clubs / projets existants au lieu de tout recommencer.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="180">
+        <div class="program-pill">
+          <h5><span class="icon-circle-accent icon-circle"><i class="fa-solid fa-lightbulb"></i></span> 4. Innovation & opportunités</h5>
+          <p class="small text-muted mt-2">
+            • Hub IDEA : formulaires + API pour suivre les besoins en temps réel.<br>
+            • Projets concrets (EDHEG App, micro-incubation d’idées).<br>
+            • Mise en lien avec concours, bourses et programmes (ECOCIR, etc.).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="row mt-5 g-4">
+      <div class="col-lg-6" data-aos="fade-right">
+        <h4>🗓 Feuille de route de la campagne</h4>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <h6 class="mb-1">Phase 1 – Sensibilisation</h6>
+            <p class="small text-muted mb-0">Rencontre des étudiants dans les salles, collecte des frustrations et propositions via nos formulaires.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <h6 class="mb-1">Phase 2 – Co-construction</h6>
+            <p class="small text-muted mb-0">Atelier avec les volontaires de l’équipe pour prioriser 5 actions rapides & 3 projets structurants.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <h6 class="mb-1">Phase 3 – Mise en œuvre</h6>
+            <p class="small text-muted mb-0">Calendrier d’actions, indicateurs clairs, suivi via le Hub IDEA & publication régulière des avancées.</p>
+          </div>
+        </div>
       </div>
       <div class="col-lg-6" data-aos="fade-left">
+        <div class="card card-ghost p-4 h-100">
+          <h5><i class="fa-solid fa-circle-nodes me-2 text-primary"></i> Le “Hub IDEA” (Formulaires + API)</h5>
+          <p class="small text-muted">
+            Tu vois les liens que tu as déjà mis (formulaires, Apps Script, Google Sheets, etc.) : ils sont au cœur
+            du <strong>Hub IDEA</strong>.
+          </p>
+          <ul class="small text-muted mb-1">
+            <li>Un formulaire = une donnée utile (besoin, idée, souci, suggestion).</li>
+            <li>Une API = un tableau de bord dynamique pour suivre la réalité du terrain.</li>
+            <li>Chaque étudiant peut voir ce qui se passe : <strong>zéro politique cachée</strong>.</li>
+          </ul>
+          <p class="small text-muted mb-0">
+            Cette page affiche déjà en direct les soutiens & les membres recrutés. Demain, nous pourrons
+            y afficher : les projets en cours, les ateliers à venir, les besoins urgents, etc.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS EN TEMPS RÉEL -->
+<section id="stats" class="py-5 bg-white">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <div class="section-title-pill mb-2">
+        <i class="fa-solid fa-chart-line"></i> Statistiques en Temps Réel
+      </div>
+      <h2 class="fw-bold">📊 Transparence totale sur la campagne</h2>
+      <p class="lead text-muted">
+        Les chiffres affichés ci-dessous viennent directement de Google Sheets via Apps Script.
+        À chaque nouveau formulaire rempli, le site se met à jour.
+      </p>
+    </div>
+
+    <div class="stat-error d-none" id="fetch-error">
+      <i class="fas fa-exclamation-triangle me-2"></i> Problème de connexion ! Impossible de charger les données.
+      Vérifie tes URL Apps Script.
+    </div>
+
+    <div class="row g-4">
+      <!-- VOTES -->
+      <div class="col-lg-6">
+        <div class="stat-box h-100" data-aos="fade-up">
+          <i class="fas fa-vote-yea fa-3x text-primary mb-3"></i>
+          <h4>Soutiens Reçus (Votes)</h4>
+          <div class="stat-number" id="total-votes-stat">0</div>
+
+          <h5 class="mt-4">Derniers Soutiens (Motivation)</h5>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Filière</th>
+                  <th>Motivation</th>
+                </tr>
+              </thead>
+              <tbody id="votes-list-body">
+                <tr><td colspan="3">Chargement...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEMBRES -->
+      <div class="col-lg-6">
+        <div class="stat-box h-100" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-users-gear fa-3x text-accent mb-3"></i>
+          <h4>Membres Inscrits (Équipe)</h4>
+          <div class="stat-number" id="total-members-stat">0</div>
+
+          <h5 class="mt-4">L'Équipe d'Action (Volontaires)</h5>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Filière</th>
+                <th>Rôle</th>
+              </tr>
+              </thead>
+              <tbody id="members-list-body">
+              <tr><td colspan="3">Chargement...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN / CONTACT -->
+<section id="join" class="py-5 bg-light">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-5" data-aos="fade-up">
+        <div class="section-title-pill mb-2">
+          <i class="fa-solid fa-hands-helping"></i> Rejoindre le Mouvement
+        </div>
+        <h3 class="fw-bold">Deux façons d'agir : voter ou agir avec nous.</h3>
+        <p class="lead text-muted">
+          Tu peux simplement <strong>apporter ton soutien</strong> à la vision, ou <strong>entrer dans l'équipe</strong>
+          pour construire des projets et événements.
+        </p>
+        <ul class="text-muted small">
+          <li><strong>Vote / soutien simple :</strong> tu nous encourages, on t’informe.</li>
+          <li><strong>Membre équipe :</strong> communication, événementiel, projets IDEA, data…</li>
+          <li><strong>Tout est géré via les formulaires + API</strong> pour suivre les engagements en direct.</li>
+        </ul>
+      </div>
+      <div class="col-lg-7" data-aos="fade-left">
         <div class="card p-4 shadow-lg">
-          <h5>Formulaire de Soutien / Recrutement</h5>
+          <h5 class="mb-3">Formulaire de Soutien / Recrutement</h5>
           <form id="joinForm">
             <div class="mb-3">
               <label for="nom" class="form-label">Nom complet</label>
@@ -203,23 +747,75 @@
             <div class="mb-3">
               <label for="role" class="form-label">Je veux...</label>
               <select class="form-select" id="role" name="Rôle Souhaité" required>
-                  <option value="" disabled selected>Choisir une option</option>
-                  <option value="Vote/Soutien Simple">Voter / Apporter mon Soutien (Simple)</option>
-                  <option value="Membre Equipe Communication">Devenir Membre (Com. / Réseaux)</option>
-                  <option value="Membre Equipe Evenementiel">Devenir Membre (Événements / Logistique)</option>
-                  <option value="Membre Equipe Projets IDEA">Devenir Membre (Projets Tech / IDEA)</option>
+                <option value="" disabled selected>Choisir une option</option>
+                <option value="Vote/Soutien Simple">Voter / Apporter mon Soutien (Simple)</option>
+                <option value="Membre Equipe Communication">Devenir Membre (Com. / Réseaux)</option>
+                <option value="Membre Equipe Evenementiel">Devenir Membre (Événements / Logistique)</option>
+                <option value="Membre Equipe Projets IDEA">Devenir Membre (Projets Tech / IDEA)</option>
               </select>
             </div>
             <div class="mb-3">
               <label for="motivation" class="form-label">Votre motivation / Message de soutien (max 100 mots)</label>
               <textarea class="form-control" id="motivation" name="Votre motivation" rows="3" required></textarea>
             </div>
-            <button class="btn btn-primary w-100 btn-animate" type="submit">Envoyer et Rejoindre le Mouvement</button>
+            <button class="btn btn-primary w-100 btn-animate" type="submit">
+              Envoyer et Rejoindre le Mouvement
+            </button>
             <div id="form-message" class="mt-3 text-center d-none"></div>
           </form>
         </div>
       </div>
     </div>
+
+    <!-- FAQ -->
+    <div class="row mt-5">
+      <div class="col-lg-8 mx-auto" data-aos="fade-up">
+        <h4 class="mb-3 text-center">Questions fréquentes</h4>
+        <div class="accordion faq" id="faqAccordion">
+          <div class="accordion-item faq-item">
+            <h2 class="accordion-header" id="faqOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqOneCollapse">
+                Est-ce que mon vote ici compte officiellement ?
+              </button>
+            </h2>
+            <div id="faqOneCollapse" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body small text-muted">
+                Ce formulaire est un <strong>soutien symbolique et logistique</strong>. Il permet de montrer ta
+                position, de t’informer et de t’intégrer à l’équipe. Le vote officiel se fera selon les règles de
+                l’EDHEG.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item faq-item">
+            <h2 class="accordion-header" id="faqTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwoCollapse">
+                Comment sont utilisées les données (nom, filière, motivation) ?
+              </button>
+            </h2>
+            <div id="faqTwoCollapse" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body small text-muted">
+                Les données servent uniquement à la campagne : suivi des soutiens, organisation de l’équipe, 
+                planification des activités. Elles sont stockées dans Google Sheets sécurisés et ne sont pas revendues.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item faq-item">
+            <h2 class="accordion-header" id="faqThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThreeCollapse">
+                Je n’ai pas beaucoup de temps : puis-je aider quand même ?
+              </button>
+            </h2>
+            <div id="faqThreeCollapse" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body small text-muted">
+                Oui. Tu peux simplement voter / soutenir ou choisir un rôle léger (relayer l’info, prendre des
+                photos, aider sur un seul événement, etc.). Chaque niveau d’engagement compte.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -228,9 +824,10 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-6 py-3">
-        <small>© <strong>Ouraga Ange‑Michel</strong> — Campagne EDHEG • Construit avec l'esprit IDEA</small>
+        <small>© <strong>Ouraga Ange-Michel</strong> — Campagne EDHEG • Construit avec l'esprit IDEA</small>
       </div>
       <div class="col-md-6 text-md-end py-3">
+        <!-- Tu peux mettre ici tes vrais liens WhatsApp / LinkedIn -->
         <a href="#" class="me-3 text-muted"><i class="fa-brands fa-whatsapp"></i></a>
         <a href="#" class="me-3 text-muted"><i class="fa-brands fa-linkedin"></i></a>
       </div>
@@ -248,124 +845,107 @@
   // CONFIGURATION GAS API (MISES À JOUR)
   // =================================================================
 
-  // URL pour soumettre les données (votre script GAS doPost - URL de l'image d0e3fa.png)
+  // URL pour soumettre les données (script GAS doPost)
   const GAS_POST_URL = 'https://script.google.com/macros/s/AKfycbx8xCVGqbsDxDi115uBX7FVQe54OiQaBv872XIKMbL6XD4SRFrv0YR-2KXQrWM_80i-/exec';
 
-  // URL pour récupérer les données (votre script GAS unifié doGet - URL du dernier message utilisateur)
+  // URL pour récupérer les données (script GAS unifié doGet)
   const GAS_FETCH_URL = 'https://script.google.com/macros/s/AKfycbweqnr98zvtfi2NxV6Ow9YyNGuT-ECl1PCNRa_9rA-hzl_O3iz6slxHWRIfODmJIlq5XQ/exec';
-  
-  // NOTE: Vérifiez que GAS_POST_URL pointe vers l'API qui écrit les données
-  // et GAS_FETCH_URL pointe vers l'API qui lit les données (celle corrigée en Code.gs).
-
-  // =================================================================
-  // LOGIQUE JAVASCRIPT DE RÉCUPÉRATION ET D'AFFICHAGE
-  // =================================================================
 
   // Fonction 1 : Récupérer les données et mettre à jour les statistiques
   async function fetchStats() {
-      const errorDiv = document.getElementById('fetch-error');
-      errorDiv.classList.add('d-none');
-      
-      try {
-          // --- 1. RÉCUPÉRER LES VOTES/SOUTIENS (Feuille "Élection EDHEG") ---
-          // Utilise le paramètre ?sheet=votes pour cibler la bonne feuille dans votre script GAS unifié
-          const votesResponse = await fetch(GAS_FETCH_URL + '?sheet=votes'); 
-          const votesData = await votesResponse.json();
+    const errorDiv = document.getElementById('fetch-error');
+    errorDiv.classList.add('d-none');
 
-          if (votesData.error) throw new Error(votesData.message);
-          
-          const votes = votesData.rows || [];
-          document.getElementById('live-votes').textContent = votes.length;
-          document.getElementById('total-votes-stat').textContent = votes.length;
-          
-          const votesBody = document.getElementById('votes-list-body');
-          votesBody.innerHTML = '';
-          
-          votes.slice(0, 10).forEach(item => {
-              const row = votesBody.insertRow();
-              // ATTENTION : Les clés JSON doivent correspondre aux en-têtes exacts de votre feuille Sheets
-              row.insertCell().textContent = item["Nom complet"] || 'Anonyme'; 
-              row.insertCell().textContent = item["Filière / Niveau"] || 'N/A';              
-              row.insertCell().textContent = (item["Votre motivation"] || '').substring(0, 40) + '...'; 
-          });
-          if (votes.length === 0) votesBody.innerHTML = '<tr><td colspan="3">Aucun soutien enregistré pour l\'instant.</td></tr>';
+    try {
+      // VOTES
+      const votesResponse = await fetch(GAS_FETCH_URL + '?sheet=votes');
+      const votesData = await votesResponse.json();
+      if (votesData.error) throw new Error(votesData.message);
 
-          // --- 2. RÉCUPÉRER LES MEMBRES DE L'ÉQUIPE (Feuille "Rejoindre l'équipe") ---
-          // Utilise le paramètre ?sheet=equipe
-          const membersResponse = await fetch(GAS_FETCH_URL + '?sheet=equipe'); 
-          const membersData = await membersResponse.json();
+      const votes = votesData.rows || [];
+      document.getElementById('live-votes').textContent = votes.length;
+      document.getElementById('total-votes-stat').textContent = votes.length;
+      // iPhone mini-dashboard
+      document.getElementById('iphone-votes').textContent = votes.length;
 
-          if (membersData.error) throw new Error(membersData.message);
+      const votesBody = document.getElementById('votes-list-body');
+      votesBody.innerHTML = '';
+      votes.slice(0, 10).forEach(item => {
+        const row = votesBody.insertRow();
+        row.insertCell().textContent = item["Nom complet"] || 'Anonyme';
+        row.insertCell().textContent = item["Filière / Niveau"] || 'N/A';
+        row.insertCell().textContent = (item["Votre motivation"] || '').substring(0, 40) + '...';
+      });
+      if (votes.length === 0) votesBody.innerHTML = '<tr><td colspan="3">Aucun soutien enregistré pour l\'instant.</td></tr>';
 
-          const members = membersData.rows || [];
-          document.getElementById('live-members').textContent = members.length;
-          document.getElementById('total-members-stat').textContent = members.length;
-          
-          const membersBody = document.getElementById('members-list-body');
-          membersBody.innerHTML = '';
+      // MEMBRES
+      const membersResponse = await fetch(GAS_FETCH_URL + '?sheet=equipe');
+      const membersData = await membersResponse.json();
+      if (membersData.error) throw new Error(membersData.message);
 
-          members.slice(0, 10).forEach(item => {
-              const row = membersBody.insertRow();
-              // ATTENTION : Les clés JSON doivent correspondre aux en-têtes exacts de votre feuille Sheets
-              row.insertCell().textContent = item["Nom complet"] || 'Anonyme'; 
-              row.insertCell().textContent = item["Filière / Niveau"] || 'N/A';              
-              row.insertCell().textContent = item["Rôle Souhaité"] || 'Volontaire'; 
-          });
-          if (members.length === 0) membersBody.innerHTML = '<tr><td colspan="3">Aucun membre actif enregistré pour l\'instant.</td></tr>';
+      const members = membersData.rows || [];
+      document.getElementById('live-members').textContent = members.length;
+      document.getElementById('total-members-stat').textContent = members.length;
+      document.getElementById('iphone-members').textContent = members.length;
 
-      } catch (error) {
-          console.error('Erreur lors du chargement des statistiques:', error);
-          errorDiv.classList.remove('d-none');
-          document.getElementById('votes-list-body').innerHTML = '<tr><td colspan="3">Échec du chargement</td></tr>';
-          document.getElementById('members-list-body').innerHTML = '<tr><td colspan="3">Échec du chargement</td></tr>';
-      }
+      const membersBody = document.getElementById('members-list-body');
+      membersBody.innerHTML = '';
+      members.slice(0, 10).forEach(item => {
+        const row = membersBody.insertRow();
+        row.insertCell().textContent = item["Nom complet"] || 'Anonyme';
+        row.insertCell().textContent = item["Filière / Niveau"] || 'N/A';
+        row.insertCell().textContent = item["Rôle Souhaité"] || 'Volontaire';
+      });
+      if (members.length === 0) membersBody.innerHTML = '<tr><td colspan="3">Aucun membre actif enregistré pour l\'instant.</td></tr>';
+
+    } catch (error) {
+      console.error('Erreur lors du chargement des statistiques:', error);
+      errorDiv.classList.remove('d-none');
+      document.getElementById('votes-list-body').innerHTML = '<tr><td colspan="3">Échec du chargement</td></tr>';
+      document.getElementById('members-list-body').innerHTML = '<tr><td colspan="3">Échec du chargement</td></tr>';
+    }
   }
 
-  // Fonction 2 : Soumettre le formulaire (gestionnaire d'événement)
+  // Fonction 2 : Soumettre le formulaire
   document.getElementById('joinForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const formData = new FormData(form);
-      const formMessage = document.getElementById('form-message');
-      
-      formData.append('action', 'post_data'); // Action pour le script POST GAS (ajustez si besoin)
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const formMessage = document.getElementById('form-message');
 
-      formMessage.classList.remove('d-none', 'text-success', 'text-danger');
-      formMessage.classList.add('text-muted');
-      formMessage.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Envoi en cours...';
+    formData.append('action', 'post_data');
 
-      try {
-          // NOTE: On utilise GAS_POST_URL pour l'envoi des données
-          const response = await fetch(GAS_POST_URL, {
-              method: 'POST',
-              body: formData,
-          });
+    formMessage.classList.remove('d-none', 'text-success', 'text-danger');
+    formMessage.classList.add('text-muted');
+    formMessage.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Envoi en cours...';
 
-          // Le script POST GAS doit retourner un JSON avec {status: "SUCCESS"}
-          const result = await response.json(); 
+    try {
+      const response = await fetch(GAS_POST_URL, {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await response.json();
 
-          if (result.status === 'SUCCESS') {
-              formMessage.classList.remove('text-muted');
-              formMessage.classList.add('text-success');
-              formMessage.innerHTML = '<i class="fas fa-check-circle me-2"></i> Merci pour votre soutien et/ou votre engagement !';
-              form.reset();
-              fetchStats(); // Actualiser les stats après la soumission
-          } else {
-              throw new Error(result.message || 'Erreur inconnue du serveur GAS.');
-          }
-
-      } catch (error) {
-          console.error('Erreur de soumission:', error);
-          formMessage.classList.remove('text-muted');
-          formMessage.classList.add('text-danger');
-          formMessage.innerHTML = `<i class="fas fa-times-circle me-2"></i> Échec de l'envoi. ${error.message}`;
+      if (result.status === 'SUCCESS') {
+        formMessage.classList.remove('text-muted');
+        formMessage.classList.add('text-success');
+        formMessage.innerHTML = '<i class="fas fa-check-circle me-2"></i> Merci pour ton soutien / engagement !';
+        form.reset();
+        fetchStats();
+      } else {
+        throw new Error(result.message || 'Erreur inconnue du serveur GAS.');
       }
+
+    } catch (error) {
+      console.error('Erreur de soumission:', error);
+      formMessage.classList.remove('text-muted');
+      formMessage.classList.add('text-danger');
+      formMessage.innerHTML = `<i class="fas fa-times-circle me-2"></i> Échec de l\'envoi. ${error.message}`;
+    }
   });
 
-  // Charger les statistiques au démarrage et les rafraîchir
   document.addEventListener('DOMContentLoaded', fetchStats);
-  setInterval(fetchStats, 30000); // Rafraîchir toutes les 30 secondes pour le "live"
-
+  setInterval(fetchStats, 30000); // rafraîchissement toutes les 30s
 </script>
 </body>
 </html>
