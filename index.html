@@ -120,6 +120,9 @@
       background:rgba(255,122,0,.08);
       color:var(--accent);
     }
+    .text-accent{
+      color:var(--accent) !important;
+    }
 
     /* Timeline */
     .timeline{
@@ -395,7 +398,6 @@
         </div>
       </div>
 
-      <!-- On a retiré la carte "Hub IDEA (Formulaires + API)" -->
       <div class="col-lg-6" data-aos="fade-left">
         <div class="card card-ghost p-4 h-100">
           <h5><i class="fa-solid fa-circle-nodes me-2 text-primary"></i> Suivi simple & lisible</h5>
@@ -658,17 +660,25 @@
 <script>
   AOS.init({duration:800, once:true});
 
-  // URLs Apps Script
-  const GAS_POST_URL = 'https://script.google.com/macros/s/AKfycbx8xCVGqbsDxDi115uBX7FVQe54OiQaBv872XIKMbL6XD4SRFrv0YR-2KXQrWM_80i-/exec';
-  const GAS_FETCH_URL = 'https://script.google.com/macros/s/AKfycbweqnr98zvtfi2NxV6Ow9YyNGuT-ECl1PCNRa_9rA-hzl_O3iz6slxHWRIfODmJIlq5XQ/exec';
+  // =======================
+  //  CONFIG APPS SCRIPT
+  // =======================
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbw08EMsMpOEipWAdtwfFhFxx8eeWvLt6Wdl9zo87Vw4Q7Kz3tleqzXDqUw3Xq5sXD98lQ/exec';
 
+  // On garde les mêmes mots-clés que dans le script :
+  const SHEET_VOTES  = 'votes';   // doit renvoyer la feuille "EDHEG_Election_Ange"
+  const SHEET_EQUIPE = 'equipe';  // doit renvoyer la feuille "EDHEG_Rejoindre_Equipe"
+
+  // =======================
+  //  RÉCUPÉRATION DES STATS
+  // =======================
   async function fetchStats() {
     const errorDiv = document.getElementById('fetch-error');
     errorDiv.classList.add('d-none');
 
     try {
-      // VOTES
-      const votesResponse = await fetch(GAS_FETCH_URL + '?sheet=votes');
+      // ----- VOTES -----
+      const votesResponse = await fetch(`${GAS_URL}?sheet=${SHEET_VOTES}`);
       const votesData = await votesResponse.json();
       if (votesData.error) throw new Error(votesData.message);
 
@@ -681,13 +691,15 @@
       votes.slice(0, 10).forEach(item => {
         const row = votesBody.insertRow();
         row.insertCell().textContent = item["Nom complet"] || 'Anonyme';
-        row.insertCell().textContent = item["Filière / Niveau"] || 'N/A';
-        row.insertCell().textContent = (item["Votre motivation"] || '').substring(0, 40) + '...';
+        row.insertCell().textContent = item["Filière"] || item["Filière / Niveau"] || 'N/A';
+        row.insertCell().textContent = ((item["Pourquoi tu votes pour Ange-Michel ?"] || item["Votre motivation"] || '').substring(0, 40)) + '...';
       });
-      if (votes.length === 0) votesBody.innerHTML = '<tr><td colspan="3">Aucun soutien enregistré pour l\'instant.</td></tr>';
+      if (votes.length === 0) {
+        votesBody.innerHTML = '<tr><td colspan="3">Aucun soutien enregistré pour l\'instant.</td></tr>';
+      }
 
-      // MEMBRES
-      const membersResponse = await fetch(GAS_FETCH_URL + '?sheet=equipe');
+      // ----- MEMBRES ÉQUIPE -----
+      const membersResponse = await fetch(`${GAS_URL}?sheet=${SHEET_EQUIPE}`);
       const membersData = await membersResponse.json();
       if (membersData.error) throw new Error(membersData.message);
 
@@ -700,10 +712,12 @@
       members.slice(0, 10).forEach(item => {
         const row = membersBody.insertRow();
         row.insertCell().textContent = item["Nom complet"] || 'Anonyme';
-        row.insertCell().textContent = item["Filière / Niveau"] || 'N/A';
-        row.insertCell().textContent = item["Rôle Souhaité"] || 'Volontaire';
+        row.insertCell().textContent = item["Filière"] || 'N/A';
+        row.insertCell().textContent = item["Rôle Souhaité"] || item["Rôle souhaité (Communication / Logistique / ...]"] || 'Volontaire';
       });
-      if (members.length === 0) membersBody.innerHTML = '<tr><td colspan="3">Aucun membre actif enregistré pour l\'instant.</td></tr>';
+      if (members.length === 0) {
+        membersBody.innerHTML = '<tr><td colspan="3">Aucun membre actif enregistré pour l\'instant.</td></tr>';
+      }
 
     } catch (error) {
       console.error('Erreur lors du chargement des statistiques:', error);
@@ -713,20 +727,25 @@
     }
   }
 
+  // =======================
+  //  ENVOI DU FORMULAIRE
+  // =======================
   document.getElementById('joinForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const formMessage = document.getElementById('form-message');
 
-    formData.append('action', 'post_data');
+    // paramètres pour Apps Script
+    formData.append('sheet', SHEET_EQUIPE);   // on écrit dans la partie "équipe"
+    formData.append('action', 'post_data');   // doit être géré côté Apps Script
 
     formMessage.classList.remove('d-none', 'text-success', 'text-danger');
     formMessage.classList.add('text-muted');
     formMessage.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Envoi en cours...';
 
     try {
-      const response = await fetch(GAS_POST_URL, {
+      const response = await fetch(GAS_URL, {
         method: 'POST',
         body: formData,
       });
@@ -737,7 +756,7 @@
         formMessage.classList.add('text-success');
         formMessage.innerHTML = '<i class="fas fa-check-circle me-2"></i> Merci pour ton soutien / engagement !';
         form.reset();
-        fetchStats();
+        fetchStats(); // on rafraîchit les statistiques
       } else {
         throw new Error(result.message || 'Erreur inconnue du serveur.');
       }
