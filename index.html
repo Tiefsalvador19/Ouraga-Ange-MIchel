@@ -663,11 +663,11 @@
   // =======================
   //  CONFIG APPS SCRIPT
   // =======================
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbw08EMsMpOEipWAdtwfFhFxx8eeWvLt6Wdl9zo87Vw4Q7Kz3tleqzXDqUw3Xq5sXD98lQ/exec';
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbwJ2TATrLgB-pmI9fEprKEJ04M_CQ_g8tzscbzrpIw1xxNFfXMLuuY4aJ00exSRD2uPsA/exec';
 
-  // On garde les mêmes mots-clés que dans le script :
-  const SHEET_VOTES  = 'votes';   // doit renvoyer la feuille "EDHEG_Election_Ange"
-  const SHEET_EQUIPE = 'equipe';  // doit renvoyer la feuille "EDHEG_Rejoindre_Equipe"
+  // noms envoyés au script (qui doit les mapper vers les feuilles)
+  const SHEET_VOTES  = 'EDHEG_Election_Ange';
+  const SHEET_EQUIPE = 'EDHEG_Rejoindre_Equipe';
 
   // =======================
   //  RÉCUPÉRATION DES STATS
@@ -678,7 +678,7 @@
 
     try {
       // ----- VOTES -----
-      const votesResponse = await fetch(`${GAS_URL}?sheet=${SHEET_VOTES}`);
+      const votesResponse = await fetch(`${GAS_URL}?sheet=${encodeURIComponent(SHEET_VOTES)}&action=get`);
       const votesData = await votesResponse.json();
       if (votesData.error) throw new Error(votesData.message);
 
@@ -692,14 +692,19 @@
         const row = votesBody.insertRow();
         row.insertCell().textContent = item["Nom complet"] || 'Anonyme';
         row.insertCell().textContent = item["Filière"] || item["Filière / Niveau"] || 'N/A';
-        row.insertCell().textContent = ((item["Pourquoi tu votes pour Ange-Michel ?"] || item["Votre motivation"] || '').substring(0, 40)) + '...';
+        const mot =
+          item["Pourquoi tu votes pour Ange-Michel ?"] ||
+          item["Motivation"] ||
+          item["Votre motivation"] ||
+          '';
+        row.insertCell().textContent = mot.toString().substring(0, 60) + '…';
       });
       if (votes.length === 0) {
         votesBody.innerHTML = '<tr><td colspan="3">Aucun soutien enregistré pour l\'instant.</td></tr>';
       }
 
       // ----- MEMBRES ÉQUIPE -----
-      const membersResponse = await fetch(`${GAS_URL}?sheet=${SHEET_EQUIPE}`);
+      const membersResponse = await fetch(`${GAS_URL}?sheet=${encodeURIComponent(SHEET_EQUIPE)}&action=get`);
       const membersData = await membersResponse.json();
       if (membersData.error) throw new Error(membersData.message);
 
@@ -712,8 +717,12 @@
       members.slice(0, 10).forEach(item => {
         const row = membersBody.insertRow();
         row.insertCell().textContent = item["Nom complet"] || 'Anonyme';
-        row.insertCell().textContent = item["Filière"] || 'N/A';
-        row.insertCell().textContent = item["Rôle Souhaité"] || item["Rôle souhaité (Communication / Logistique / ...]"] || 'Volontaire';
+        row.insertCell().textContent = item["Filière"] || item["Filière / Niveau"] || 'N/A';
+        const role =
+          item["Rôle souhaité (Communication / Logistique / ..."] ||
+          item["Rôle Souhaité"] ||
+          'Volontaire';
+        row.insertCell().textContent = role;
       });
       if (members.length === 0) {
         membersBody.innerHTML = '<tr><td colspan="3">Aucun membre actif enregistré pour l\'instant.</td></tr>';
@@ -737,8 +746,8 @@
     const formMessage = document.getElementById('form-message');
 
     // paramètres pour Apps Script
-    formData.append('sheet', SHEET_EQUIPE);   // on écrit dans la partie "équipe"
-    formData.append('action', 'post_data');   // doit être géré côté Apps Script
+    formData.append('sheet', SHEET_EQUIPE);   // on écrit dans la feuille "EDHEG_Rejoindre_Equipe"
+    formData.append('action', 'post');        // doit être géré côté Apps Script
 
     formMessage.classList.remove('d-none', 'text-success', 'text-danger');
     formMessage.classList.add('text-muted');
